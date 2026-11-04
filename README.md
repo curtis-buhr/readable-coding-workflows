@@ -1,4 +1,4 @@
-# Readable Code, Measured
+# Improving Readability in Generated Code
 
 Evaluating how comments, naming, and planning affect AI-assisted C# maintenance.
 
