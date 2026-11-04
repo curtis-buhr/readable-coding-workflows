@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <DefineConstants Condition="'$(FixtureRevision)' &gt;= '1'">$(DefineConstants);STAGE1</DefineConstants>
+    <DefineConstants Condition="'$(FixtureRevision)' &gt;= '2'">$(DefineConstants);STAGE2</DefineConstants>
+    <DefineConstants Condition="'$(FixtureRevision)' &gt;= '3'">$(DefineConstants);STAGE3</DefineConstants>
+  </PropertyGroup>
+</Project>

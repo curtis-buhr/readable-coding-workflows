@@ -1,0 +1,9 @@
+Continue the versioned deployment profile library, preserving both APIs and the previous requirements except for the changes below.
+
+Enforce a total worst-case retry budget of 120000 milliseconds across both profile versions. The budget is (Retries + 1) * TimeoutMs + Retries * BackoffMs. Exactly 120000 is allowed. Exceeding the budget is a FormatException in Parse and single-profile migration and an "invalid-profile" issue in either batch mode. Disabled profiles are validated too. Version 1 still has zero backoff.
+
+Tighten endpoint validation for both versions. An endpoint URI must not contain a query, fragment, or user information. Reject raw "?" and "#" delimiters even when the corresponding component is empty. For otherwise valid profiles preserve the endpoint string for parsing and canonical migration, including any path or trailing slash.
+
+Fix a deployment adapter integration defect: its previous string concatenation introduced extra separators for endpoints already ending with one or more slashes. For an enabled profile, construct the HealthUrl from the original endpoint by trimming all trailing "/" characters and appending exactly "/health". Preserve the original endpoint's scheme, authority, and path spelling otherwise. Disabled valid profiles still return null. Validate profiles before looking at Enabled.
+
+Keep the project buildable without external packages.

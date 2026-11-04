@@ -1,0 +1,4 @@
+* text=auto eol=lf
+experiments/001-four-variants/submissions/** -text
+benchmarks/challenges/*/tasks/*.txt -text
+workflows/*.txt -text

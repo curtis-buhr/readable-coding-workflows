@@ -1,0 +1,434 @@
+[
+  {
+    "variant": "A",
+    "revision": 2,
+    "cases": [
+      {
+        "Case": "ThrowWithEntryRetained",
+        "Expected": "returned:seed:stale",
+        "Observed": "returned:seed:stale",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "InvalidateThenThrow",
+        "Expected": "threw:loader",
+        "Observed": "threw:loader",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": true,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "ClearThenThrow",
+        "Expected": "threw:loader",
+        "Observed": "threw:loader",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": true,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "ReturnThenClockThrows",
+        "Expected": "threw:timestamp",
+        "Observed": "returned:seed:stale",
+        "SetupMatched": true,
+        "Matched": false,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": true,
+        "ClockFailureCount": 1
+      }
+    ]
+  },
+  {
+    "variant": "A",
+    "revision": 3,
+    "cases": [
+      {
+        "Case": "ThrowWithEntryRetained",
+        "Expected": "returned:seed:stale",
+        "Observed": "returned:seed:stale",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "InvalidateThenThrow",
+        "Expected": "threw:loader",
+        "Observed": "threw:loader",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": true,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "ClearThenThrow",
+        "Expected": "threw:loader",
+        "Observed": "threw:loader",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": true,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "ReturnThenClockThrows",
+        "Expected": "threw:timestamp",
+        "Observed": "returned:seed:stale",
+        "SetupMatched": true,
+        "Matched": false,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": true,
+        "ClockFailureCount": 1
+      }
+    ]
+  },
+  {
+    "variant": "B",
+    "revision": 2,
+    "cases": [
+      {
+        "Case": "ThrowWithEntryRetained",
+        "Expected": "returned:seed:stale",
+        "Observed": "returned:seed:stale",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "InvalidateThenThrow",
+        "Expected": "threw:loader",
+        "Observed": "threw:loader",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": true,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "ClearThenThrow",
+        "Expected": "threw:loader",
+        "Observed": "threw:loader",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": true,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "ReturnThenClockThrows",
+        "Expected": "threw:timestamp",
+        "Observed": "threw:timestamp",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": true,
+        "ClockFailureCount": 1
+      }
+    ]
+  },
+  {
+    "variant": "B",
+    "revision": 3,
+    "cases": [
+      {
+        "Case": "ThrowWithEntryRetained",
+        "Expected": "returned:seed:stale",
+        "Observed": "returned:seed:stale",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "InvalidateThenThrow",
+        "Expected": "threw:loader",
+        "Observed": "threw:loader",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": true,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "ClearThenThrow",
+        "Expected": "threw:loader",
+        "Observed": "threw:loader",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": true,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "ReturnThenClockThrows",
+        "Expected": "threw:timestamp",
+        "Observed": "threw:timestamp",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": true,
+        "ClockFailureCount": 1
+      }
+    ]
+  },
+  {
+    "variant": "C",
+    "revision": 2,
+    "cases": [
+      {
+        "Case": "ThrowWithEntryRetained",
+        "Expected": "returned:seed:stale",
+        "Observed": "returned:seed:stale",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "InvalidateThenThrow",
+        "Expected": "threw:loader",
+        "Observed": "returned:seed:stale",
+        "SetupMatched": true,
+        "Matched": false,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": true,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "ClearThenThrow",
+        "Expected": "threw:loader",
+        "Observed": "returned:seed:stale",
+        "SetupMatched": true,
+        "Matched": false,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": true,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "ReturnThenClockThrows",
+        "Expected": "threw:timestamp",
+        "Observed": "threw:timestamp",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": true,
+        "ClockFailureCount": 1
+      }
+    ]
+  },
+  {
+    "variant": "C",
+    "revision": 3,
+    "cases": [
+      {
+        "Case": "ThrowWithEntryRetained",
+        "Expected": "returned:seed:stale",
+        "Observed": "returned:seed:stale",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "InvalidateThenThrow",
+        "Expected": "threw:loader",
+        "Observed": "returned:seed:stale",
+        "SetupMatched": true,
+        "Matched": false,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": true,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "ClearThenThrow",
+        "Expected": "threw:loader",
+        "Observed": "returned:seed:stale",
+        "SetupMatched": true,
+        "Matched": false,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": true,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "ReturnThenClockThrows",
+        "Expected": "threw:timestamp",
+        "Observed": "threw:timestamp",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": true,
+        "ClockFailureCount": 1
+      }
+    ]
+  },
+  {
+    "variant": "D",
+    "revision": 2,
+    "cases": [
+      {
+        "Case": "ThrowWithEntryRetained",
+        "Expected": "returned:seed:stale",
+        "Observed": "returned:seed:stale",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "InvalidateThenThrow",
+        "Expected": "threw:loader",
+        "Observed": "threw:loader",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": true,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "ClearThenThrow",
+        "Expected": "threw:loader",
+        "Observed": "threw:loader",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": true,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "ReturnThenClockThrows",
+        "Expected": "threw:timestamp",
+        "Observed": "threw:timestamp",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": true,
+        "ClockFailureCount": 1
+      }
+    ]
+  },
+  {
+    "variant": "D",
+    "revision": 3,
+    "cases": [
+      {
+        "Case": "ThrowWithEntryRetained",
+        "Expected": "returned:seed:stale",
+        "Observed": "returned:seed:stale",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "InvalidateThenThrow",
+        "Expected": "threw:loader",
+        "Observed": "threw:loader",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": true,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "ClearThenThrow",
+        "Expected": "threw:loader",
+        "Observed": "threw:loader",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": true,
+        "LoaderReturnedRefresh": false,
+        "ClockFailureCount": 0
+      },
+      {
+        "Case": "ReturnThenClockThrows",
+        "Expected": "threw:timestamp",
+        "Observed": "threw:timestamp",
+        "SetupMatched": true,
+        "Matched": true,
+        "LoadCount": 2,
+        "InvalidationRemovedEntry": null,
+        "ClearCalled": false,
+        "LoaderReturnedRefresh": true,
+        "ClockFailureCount": 1
+      }
+    ]
+  }
+]

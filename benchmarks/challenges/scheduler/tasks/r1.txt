@@ -1,0 +1,10 @@
+The DockScheduling library maintains one day's loading dock bookings. Keep the existing DockCalendar constructor and TryReserve, Cancel, and Snapshot APIs. Names and IDs use ordinal case-sensitive comparison. Dock capacity is independent per dock. Bookings reserve positive capacity units at every minute in the half-open interval [StartMinute, EndMinute), bounded by 0 and 1440. A malformed booking throws ArgumentException, with ArgumentNullException for a null booking. A valid booking returns false and changes nothing when its ID already exists or capacity would be exceeded. Cancellation removes the matching ID and frees its capacity; it returns false for an unknown ID. Snapshot is an independent list sorted by ordinal ID.
+
+Add these APIs in the same namespace:
+
+  public sealed record DispatchRequest(string Id, string Dock, int EarliestStartMinute, int LatestEndMinute, int DurationMinutes, int Units);
+  public sealed class DockDispatcher
+  public DockDispatcher(DockCalendar calendar)
+  public DockBooking? Dispatch(DispatchRequest request)
+
+Dispatch searches the specified dock for the earliest start that fits the requested duration and units, beginning no earlier than EarliestStartMinute and ending no later than LatestEndMinute. It reserves and returns the resulting booking in the supplied calendar. Return null with no calendar change when there is no fit, when duration is longer than the window, or when the ID already exists. IDs and docks must be nonblank and the dock must exist. A valid window satisfies 0 <= EarliestStartMinute < LatestEndMinute <= 1440. Duration and units must be positive. Invalid requests throw ArgumentException before changing the calendar. Null request and calendar arguments throw ArgumentNullException. The calendar and dispatcher are used sequentially.

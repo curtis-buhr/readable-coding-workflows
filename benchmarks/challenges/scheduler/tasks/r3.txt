@@ -1,0 +1,8 @@
+Continue from revisions 1 and 2. Add a shared loading capacity and scheduled blackouts without changing default calendar behavior. Add these APIs in DockScheduling:
+
+  public sealed record DockBlackout(string? Dock, int StartMinute, int EndMinute);
+  public DockCalendar(IReadOnlyDictionary<string, int> dockCapacities, int sharedCapacity, IReadOnlyList<DockBlackout> blackouts)
+
+Shared capacity limits the sum of units across all docks at every minute, in addition to each dock's existing limit. The supplied shared capacity must be positive. A blackout blocks any reservation overlapping its half-open interval on the indicated dock. Null Dock applies to all docks. Blackouts can overlap and arrive in any order. A blackout with a nonnull Dock must identify a known dock. Every interval must satisfy 0 <= StartMinute < EndMinute <= 1440. Reject invalid shared capacity with ArgumentOutOfRangeException, null blackout collection with ArgumentNullException, and any invalid or null blackout entry with ArgumentException. Snapshot the configuration so changes to the caller's collections do not affect a calendar after construction.
+
+Apply both restrictions to direct reservations, single dispatch, and both batch policies. Searches must still choose the earliest fit, including after a shared capacity bottleneck or blackout. Cancel must release shared capacity and keep blackout restrictions. The original constructor still supplies independent per-dock capacity with no shared limit or blackouts, even when the sum of per-dock units exceeds Int32.MaxValue. Preserve ordinal identity, boundaries, validation, and batch rollback behavior.

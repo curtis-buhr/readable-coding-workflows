@@ -1,0 +1,7 @@
+The .NET 10 ProductCatalog library has a synchronous CatalogCache and ProductCardReader. Add ordered bulk retrieval to the reader. Preserve the existing APIs and their behavior. Concurrency is out of scope.
+
+Add public sealed record CardReadResult(string? RequestedKey, ProductCard? Card, string? Error) and public IReadOnlyList<CardReadResult> ProductCardReader.ReadMany(IEnumerable<string?> keys). Throw ArgumentNullException for a null collection. Enumerate it once, preserve order, and return one result per occurrence. A successful result has Error null, its original RequestedKey and a ProductCard with the original key spelling and loaded description. Null, empty, and whitespace-only keys produce "invalid-key" and no Card. A CatalogUnavailableException from the loader produces "unavailable" and no Card. Any other exception propagates.
+
+Match the single reader's lookup behavior: trim each valid key for the cache lookup. Within one ReadMany call, keys that trim to the same value with ordinal case-sensitive comparison share the first outcome, including an unavailable outcome. Their returned spelling still follows the corresponding input. A failure is not memoized across calls. Preserve cache expiration (entries are fresh strictly before 30 seconds after successful load completion), invalidation, and existing exception behavior.
+
+Keep the library buildable with the installed SDK and no external packages.

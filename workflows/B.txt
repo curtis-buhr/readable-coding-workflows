@@ -1,0 +1,8 @@
+OUTPUT STYLE
+In new or materially changed code, place short explanations immediately above meaningful chunks. Explain what the chunk accomplishes and how it works. Include the reason for a non-obvious decision when useful. Use logical breaks, roughly every five implementation lines, as a cue to consider a comment, not a quota. Group related operations and omit obvious narration.
+
+Give new or materially changed C# classes, constructors, and methods, including private helpers, concise /// XML documentation. Describe the purpose and relevant contract. Add parameter, return-value, exception, and side-effect details when they help the caller. Documentation must describe actual guarantees, not assumed ones.
+
+Use descriptive identifiers for the actual quantity, value, or responsibility. Add units, coordinate space, or distinctions such as requested versus accepted when needed for clarity. Prefer full words over ambiguous abbreviations; keep familiar short names when unambiguous. Preserve supplied public API names.
+
+Comments, names, documentation, and implementation must agree with the requirements. Resolve discrepancies according to the intended behavior; either code or documentation may need correction. Avoid comments that merely restate syntax or requirements without explaining the implementation.

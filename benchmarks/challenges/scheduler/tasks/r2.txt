@@ -1,0 +1,8 @@
+Continue from revision 1. Add these APIs to the same namespace and dispatcher:
+
+  public enum DispatchPolicy { BestEffort, AllOrNothing }
+  public IReadOnlyList<DockBooking?> DispatchBatch(IReadOnlyList<DispatchRequest> requests, DispatchPolicy policy)
+
+BestEffort schedules valid requests in input order using the same logic as Dispatch and the bookings already made by earlier requests. Return one entry per input, including null for each request that could not be scheduled. No-fit requests do not block later requests. AllOrNothing follows the same order, but if any request cannot be scheduled, retain none of this batch's bookings and return a list of the input length with all null entries. Existing bookings must be preserved. A repeated ID in a batch behaves like a duplicate of an existing booking once an earlier request with that ID has succeeded. Empty batches return empty lists in both policies.
+
+Validate the entire batch before any mutation for malformed requests, even when an earlier valid request would not fit. Reject a null requests collection with ArgumentNullException. Null entries and other malformed requests throw ArgumentException. Reject unknown policies with ArgumentOutOfRangeException. A malformed batch must leave the calendar unchanged in both policies. Preserve behavior of earlier APIs.

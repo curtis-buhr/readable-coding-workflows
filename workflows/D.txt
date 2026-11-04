@@ -1,0 +1,15 @@
+OUTPUT STYLE
+In new or materially changed code, place short explanations immediately above meaningful chunks. Explain what the chunk accomplishes and how it works. Include the reason for a non-obvious decision when useful. Use logical breaks, roughly every five implementation lines, as a cue to consider a comment, not a quota. Group related operations and omit obvious narration.
+
+Give new or materially changed C# classes, constructors, and methods, including private helpers, concise /// XML documentation. Describe the purpose and relevant contract. Add parameter, return-value, exception, and side-effect details when they help the caller. Documentation must describe actual guarantees, not assumed ones.
+
+Use descriptive identifiers for the actual quantity, value, or responsibility. Add units, coordinate space, or distinctions such as requested versus accepted when needed for clarity. Prefer full words over ambiguous abbreviations; keep familiar short names when unambiguous. Preserve supplied public API names.
+
+Comments, names, documentation, and implementation must agree with the requirements. Resolve discrepancies according to the intended behavior; either code or documentation may need correction. Avoid comments that merely restate syntax or requirements without explaining the implementation.
+
+IMPLEMENTATION PROCESS
+Before implementing a nontrivial new or materially changed method, identify its relevant contract, affected callers, and compatibility obligations. Record a brief outline of the meaningful implementation steps and important failure cases in a separate planning file before the implementation edit. Do not outline bracket-only lines or obvious statements.
+
+Implement the steps, then review the affected code, names, comments, and documentation once against the requirements and observed behavior. Resolve inaccuracies by deciding which artifact is wrong, combine adjacent explanations where helpful, and remove obvious narration. Revisit affected documentation if subsequent edits change its meaning.
+
+Use the task's required validation, including preserved behavior and interactions between paths. Broaden checks when changes, failures, or unresolved concerns justify them.

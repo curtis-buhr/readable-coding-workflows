@@ -1,0 +1,12 @@
+The StockImport library holds available stock by SKU. Its existing StockStore.GetQuantity, Adjust, and Snapshot API remains supported. Keys are ordinal and case-sensitive, with missing SKUs returning zero. Blank SKU arguments are invalid. Adjust adds a signed delta with no negative stock or integer overflow, and a failed adjustment leaves the store unchanged. Snapshot is an independent copy.
+
+Add a streaming adjustment adapter in namespace StockImport:
+
+  public static class StockImporter
+  public static ImportResult Run(TextReader input, StockStore store)
+  public sealed record ImportIssue(int LineNumber, string Code);
+  public sealed record ImportResult(int AcceptedRows, int AppliedRows, IReadOnlyList<ImportIssue> Issues);
+
+Consume input from its current position using ReadLine, without calling ReadToEnd, seeking, or disposing the caller's reader. Ignore blank or whitespace-only lines, but count them in 1-based physical line numbers. Other lines must be exactly `operationId|sku|delta`. Trim each field. Empty operation ID or SKU, or a field-count mismatch, produces `InvalidRow`. Parse the trimmed delta as an invariant signed 32-bit decimal integer, otherwise `InvalidQuantity`. A delta of zero is valid.
+
+Process rows in order. If the parsed operation ID already belongs to an accepted row in this call, report `DuplicateOperation`. Compare operation IDs ordinally and case-sensitively. Otherwise try the adjustment and report `QuantityOutOfRange` for a negative result or overflow. A rejected row must not reserve its operation ID. Each rejected row adds exactly one issue in input order and does not stop later rows. Each accepted row updates the supplied store. Both counts equal the number of accepted rows. Independent calls may reuse IDs. Null input and store arguments throw ArgumentNullException. Unexpected reader failures propagate. Calls and store access are sequential.

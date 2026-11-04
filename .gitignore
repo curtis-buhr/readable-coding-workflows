@@ -1,0 +1,7 @@
+.replay/
+.DS_Store
+.vs/
+**/bin/
+**/obj/
+**/TestResults/
+*.user

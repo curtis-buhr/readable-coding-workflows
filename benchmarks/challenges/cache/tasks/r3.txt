@@ -1,0 +1,7 @@
+Change ProductCatalog's key identity consistently across cache and reader entry points. Preserve existing APIs, default freshness policies, stale boundaries, and error reporting. Concurrency is out of scope.
+
+Canonicalize valid keys with Trim().ToUpperInvariant(). The canonical key identifies entries and is the exact key supplied to the upstream loader. CatalogCache.Get, Read, and Invalidate must use this identity. For these direct cache methods, null keys throw ArgumentNullException and empty or whitespace-only keys throw ArgumentException. Preserve rejection of undefined freshness policies before touching the loader.
+
+ProductCardReader.Read must follow the same validation, including ArgumentNullException for a null key. The existing reader trimmed the requested key before passing it through, causing null input to fail with NullReferenceException. Fix that integration defect. For valid input the ProductCard.Key still preserves the requested spelling.
+
+Both ReadMany overloads must now share outcomes by canonical key, including unavailable outcomes and stale fallbacks, while preserving each input's original RequestedKey and ProductCard.Key. Invalid inputs still produce "invalid-key" without loading. Ordinal, invariant identity must be independent of the process's current culture. Keep the library buildable without external packages.

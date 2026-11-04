@@ -1,0 +1,1 @@
+No additional experimental instructions. Supply only the common task, environment, API, and validation requirements. Ambient agent instructions still apply; this is not an instruction-free model.

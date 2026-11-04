@@ -1,0 +1,334 @@
+[
+  {
+    "variant": "A",
+    "revision": 3,
+    "runtime": ".NET 10.0.14",
+    "cases": [
+      {
+        "name": "ordinary",
+        "inputRow": "op|sku|+1",
+        "before": {},
+        "result": {
+          "acceptedRows": 1,
+          "appliedRows": 1,
+          "issues": []
+        },
+        "after": {
+          "sku": 1
+        },
+        "retryWithSameId": {
+          "acceptedRows": 0,
+          "appliedRows": 0,
+          "issues": [
+            {
+              "lineNumber": 1,
+              "code": "DuplicateOperation"
+            }
+          ]
+        },
+        "afterRetry": {
+          "sku": 1
+        }
+      },
+      {
+        "name": "embedded-nul",
+        "inputRow": "op|sku|1\u00002",
+        "before": {},
+        "result": {
+          "acceptedRows": 0,
+          "appliedRows": 0,
+          "issues": [
+            {
+              "lineNumber": 1,
+              "code": "InvalidQuantity"
+            }
+          ]
+        },
+        "after": {},
+        "retryWithSameId": {
+          "acceptedRows": 1,
+          "appliedRows": 1,
+          "issues": []
+        },
+        "afterRetry": {
+          "sku": 1
+        }
+      },
+      {
+        "name": "trailing-nul",
+        "inputRow": "op|sku|1\u0000",
+        "before": {},
+        "result": {
+          "acceptedRows": 1,
+          "appliedRows": 1,
+          "issues": []
+        },
+        "after": {
+          "sku": 1
+        },
+        "retryWithSameId": {
+          "acceptedRows": 0,
+          "appliedRows": 0,
+          "issues": [
+            {
+              "lineNumber": 1,
+              "code": "DuplicateOperation"
+            }
+          ]
+        },
+        "afterRetry": {
+          "sku": 1
+        }
+      }
+    ]
+  },
+  {
+    "variant": "B",
+    "revision": 3,
+    "runtime": ".NET 10.0.14",
+    "cases": [
+      {
+        "name": "ordinary",
+        "inputRow": "op|sku|+1",
+        "before": {},
+        "result": {
+          "acceptedRows": 1,
+          "appliedRows": 1,
+          "issues": []
+        },
+        "after": {
+          "sku": 1
+        },
+        "retryWithSameId": {
+          "acceptedRows": 0,
+          "appliedRows": 0,
+          "issues": [
+            {
+              "lineNumber": 1,
+              "code": "DuplicateOperation"
+            }
+          ]
+        },
+        "afterRetry": {
+          "sku": 1
+        }
+      },
+      {
+        "name": "embedded-nul",
+        "inputRow": "op|sku|1\u00002",
+        "before": {},
+        "result": {
+          "acceptedRows": 0,
+          "appliedRows": 0,
+          "issues": [
+            {
+              "lineNumber": 1,
+              "code": "InvalidQuantity"
+            }
+          ]
+        },
+        "after": {},
+        "retryWithSameId": {
+          "acceptedRows": 1,
+          "appliedRows": 1,
+          "issues": []
+        },
+        "afterRetry": {
+          "sku": 1
+        }
+      },
+      {
+        "name": "trailing-nul",
+        "inputRow": "op|sku|1\u0000",
+        "before": {},
+        "result": {
+          "acceptedRows": 1,
+          "appliedRows": 1,
+          "issues": []
+        },
+        "after": {
+          "sku": 1
+        },
+        "retryWithSameId": {
+          "acceptedRows": 0,
+          "appliedRows": 0,
+          "issues": [
+            {
+              "lineNumber": 1,
+              "code": "DuplicateOperation"
+            }
+          ]
+        },
+        "afterRetry": {
+          "sku": 1
+        }
+      }
+    ]
+  },
+  {
+    "variant": "C",
+    "revision": 3,
+    "runtime": ".NET 10.0.14",
+    "cases": [
+      {
+        "name": "ordinary",
+        "inputRow": "op|sku|+1",
+        "before": {},
+        "result": {
+          "acceptedRows": 1,
+          "appliedRows": 1,
+          "issues": []
+        },
+        "after": {
+          "sku": 1
+        },
+        "retryWithSameId": {
+          "acceptedRows": 0,
+          "appliedRows": 0,
+          "issues": [
+            {
+              "lineNumber": 1,
+              "code": "DuplicateOperation"
+            }
+          ]
+        },
+        "afterRetry": {
+          "sku": 1
+        }
+      },
+      {
+        "name": "embedded-nul",
+        "inputRow": "op|sku|1\u00002",
+        "before": {},
+        "result": {
+          "acceptedRows": 0,
+          "appliedRows": 0,
+          "issues": [
+            {
+              "lineNumber": 1,
+              "code": "InvalidQuantity"
+            }
+          ]
+        },
+        "after": {},
+        "retryWithSameId": {
+          "acceptedRows": 1,
+          "appliedRows": 1,
+          "issues": []
+        },
+        "afterRetry": {
+          "sku": 1
+        }
+      },
+      {
+        "name": "trailing-nul",
+        "inputRow": "op|sku|1\u0000",
+        "before": {},
+        "result": {
+          "acceptedRows": 1,
+          "appliedRows": 1,
+          "issues": []
+        },
+        "after": {
+          "sku": 1
+        },
+        "retryWithSameId": {
+          "acceptedRows": 0,
+          "appliedRows": 0,
+          "issues": [
+            {
+              "lineNumber": 1,
+              "code": "DuplicateOperation"
+            }
+          ]
+        },
+        "afterRetry": {
+          "sku": 1
+        }
+      }
+    ]
+  },
+  {
+    "variant": "D",
+    "revision": 3,
+    "runtime": ".NET 10.0.14",
+    "cases": [
+      {
+        "name": "ordinary",
+        "inputRow": "op|sku|+1",
+        "before": {},
+        "result": {
+          "acceptedRows": 1,
+          "appliedRows": 1,
+          "issues": []
+        },
+        "after": {
+          "sku": 1
+        },
+        "retryWithSameId": {
+          "acceptedRows": 0,
+          "appliedRows": 0,
+          "issues": [
+            {
+              "lineNumber": 1,
+              "code": "DuplicateOperation"
+            }
+          ]
+        },
+        "afterRetry": {
+          "sku": 1
+        }
+      },
+      {
+        "name": "embedded-nul",
+        "inputRow": "op|sku|1\u00002",
+        "before": {},
+        "result": {
+          "acceptedRows": 0,
+          "appliedRows": 0,
+          "issues": [
+            {
+              "lineNumber": 1,
+              "code": "InvalidQuantity"
+            }
+          ]
+        },
+        "after": {},
+        "retryWithSameId": {
+          "acceptedRows": 1,
+          "appliedRows": 1,
+          "issues": []
+        },
+        "afterRetry": {
+          "sku": 1
+        }
+      },
+      {
+        "name": "trailing-nul",
+        "inputRow": "op|sku|1\u0000",
+        "before": {},
+        "result": {
+          "acceptedRows": 1,
+          "appliedRows": 1,
+          "issues": []
+        },
+        "after": {
+          "sku": 1
+        },
+        "retryWithSameId": {
+          "acceptedRows": 0,
+          "appliedRows": 0,
+          "issues": [
+            {
+              "lineNumber": 1,
+              "code": "DuplicateOperation"
+            }
+          ]
+        },
+        "afterRetry": {
+          "sku": 1
+        }
+      }
+    ]
+  }
+]

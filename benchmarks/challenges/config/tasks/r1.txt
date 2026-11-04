@@ -1,0 +1,9 @@
+The project is a .NET 10 class library in namespace DeploymentProfiles. Keep the existing public entry points and their behavior for supported v1 inputs. Implement version 2 of the profile format and add an adapter that migrates old inputs.
+
+ProfileCodec.Parse(string json) must support both formats. Missing root version means v1. Root version 1 uses the existing flat fields. Version 2 requires a transport object with endpoint, optional timeoutMs (default 5000), an optional retry object with optional count (default 0), and optional root enabled (default true). Property names are case-sensitive. Ignore unrecognized fields. Recognized fields and containers must have the specified JSON types when present, and integer fields must fit Int32. Endpoint must be an absolute http or https URI. TimeoutMs must be 1–60000 inclusive and retry count 0–5 inclusive. A malformed profile, including a null input or unsupported version, throws FormatException. Keep the endpoint string as supplied.
+
+Add public static class ProfileMigrator with public static string ToVersion2(string json). It must parse either input version with the same rules and emit compact JSON with the properties in exactly this order and structure: {"version":2,"transport":{"endpoint":"...","timeoutMs":5000},"retry":{"count":0},"enabled":true}. Always emit these properties, including defaults. Omit unknown input properties. Running the migrator again on its own output must give the same string.
+
+DeploymentAdapter.Create must work for either version and retain the current null result for disabled profiles. Its health URL construction remains the seed behavior in this revision.
+
+Keep the project buildable with the installed .NET SDK, without external packages.

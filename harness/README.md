@@ -1,0 +1,13 @@
+# Replaying the experiment
+
+Run `node harness/replay.mjs` with Node.js 22 or later. The command checks the experiment records, verifies the SHA-256 of every archived source file, and recomputes cumulative time, token use, checks, regressions, documentation coverage, and estimated API-equivalent cost. The cost calculation uses the experiment's standard rates of $2 per million uncached input tokens, $0.10 cached input, $2.50 cache write, and $10 output. The time column sums candidate time, including parallel runs. A regression is a previously passing case that fails in the next revision of the same lineage. Cases superseded by a deliberate requirement change are excluded from that comparison.
+
+Add `--json` for structured output. The replay reads only the archive. To execute a grader against one saved submission, follow the [reproduction guide](../docs/reproduction.md).
+
+## How candidate sessions ran
+
+The original launcher used Codex CLI in ephemeral sessions on Windows with GPT-6.1 Sol at Extra High and a 20-minute limit per attempt. Each revision started in a fresh directory. The first revision received the frozen seed and later revisions received only their own variant's preceding source snapshot. Earlier requirements were available in `.benchmark/`, where candidates could also keep scratch files. Scratch files, plans, logs, and build artifacts were excluded from snapshots. A fixed rotation varied arm order between revisions.
+
+The Windows candidate sandbox allowed writes in the current candidate workspace and denied reads of the other candidates, graders, and previous experiment artifacts. Candidate tools ran without network access. The first configuration run served as the serial setup check. Matched waves then used four concurrent sandboxes after an overlap probe checked that each could build offline and could not read the others' canary files. A review copy was briefly outside the protected evaluator folder during cache revision 1. It was moved, and the recorded commands showed no access to the copy. Seed, predecessor, prompt, and submission hashes were audited after completion.
+
+The published harness covers offline replay and prompt reconstruction. For a fresh study, stage only the permitted candidate inputs in a disposable sandbox, hold the graders and other variants outside its read boundary, and test both the read boundary and the build before launching a candidate. The repository contains reference solutions and previously graded submissions, so a fresh model session should receive a staged copy of its inputs rather than a checkout of this repository.

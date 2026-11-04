@@ -1,0 +1,6 @@
+Continue from revision 1 and preserve its API, row parsing, validation, ordering, and partial import behavior. Add an overload in StockImport:
+
+  public enum ImportMode { ApplyPartial, ApplyAtomic, Preview }
+  public static ImportResult Run(TextReader input, StockStore store, ImportMode mode)
+
+ApplyPartial behaves like the existing two-argument overload. In ApplyAtomic, evaluate all rows in order against a tentative store that includes prior accepted rows in this call. Count accepted rows and collect issues exactly as ApplyPartial would. Apply the accepted changes only if there are no issues, with AppliedRows equal to AcceptedRows on success and zero on rejection. In Preview, evaluate against the same tentative state, collect the same issues and accepted count, and always return zero AppliedRows. Neither failed atomic imports nor previews may introduce keys or change quantities in the supplied store. Input remains streaming, and neither mode may attempt to read it again. If the reader throws, propagate the original exception and leave the store unchanged in ApplyAtomic and Preview. Unknown modes throw ArgumentOutOfRangeException before reading input or changing the store.

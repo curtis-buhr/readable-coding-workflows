@@ -1,0 +1,14 @@
+Continue the versioned deployment profile library. Keep the prior API and rules except for the retry format extension below.
+
+Version 2's retry object now accepts optional backoffMs, an integer from 0 to 30000 inclusive, default 0. Ignore any flat backoffMs on v1 inputs. Expose the parsed value as public int BackoffMs { get; init; } on ServiceProfile and DeploymentRequest without changing their existing primary constructors or deconstruction. DeploymentAdapter must propagate the value. ProfileMigrator.ToVersion2 always emits retry as {"count":...,"backoffMs":...} in that order, including 0. Other formatting and round-trip requirements still apply.
+
+Add these public types in DeploymentProfiles:
+  public enum MigrationMode { Atomic, BestEffort }
+  public sealed record NamedProfile(string Name, string Json)
+  public sealed record MigratedProfile(string Name, string Json)
+  public sealed record MigrationIssue(int Index, string? Name, string Code)
+  public sealed record BatchMigrationResult(IReadOnlyList<MigratedProfile> Profiles, IReadOnlyList<MigrationIssue> Issues)
+
+Add ProfileMigrator.MigrateBatch(IEnumerable<NamedProfile> entries, MigrationMode mode = MigrationMode.Atomic) returning BatchMigrationResult. Validate a null entries collection with ArgumentNullException and an unknown mode with ArgumentOutOfRangeException before enumeration. Enumerate the supplied collection only once. Process rows in order and collect at most one issue per row, using zero-based input indexes. A null row, null name, or name that becomes empty after Trim produces code "invalid-name". A name's output and issue spelling is the trimmed spelling (empty string for whitespace, null for null). The first successfully migrated row for a trimmed name reserves that name, with ordinal case-insensitive comparison. A reserved name produces "duplicate-name" before JSON validation. An unreserved name with an invalid profile produces "invalid-profile" and does not reserve the name. Preserve the order of successful rows and issues. In Atomic mode, any issue means the returned Profiles list is empty. BestEffort mode returns all successes alongside the issues. A batch does not change parsing or single-profile behavior.
+
+Keep the project buildable without external packages.

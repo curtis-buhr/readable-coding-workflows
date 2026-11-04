@@ -1,0 +1,6 @@
+IMPLEMENTATION PROCESS
+Before implementing a nontrivial new or materially changed method, identify its relevant contract, affected callers, and compatibility obligations. Record a brief outline of the meaningful implementation steps and important failure cases in a separate planning file before the implementation edit. Do not outline bracket-only lines or obvious statements.
+
+Implement the steps, then review the affected code, names, comments, and documentation once against the requirements and observed behavior. Resolve inaccuracies by deciding which artifact is wrong, combine adjacent explanations where helpful, and remove obvious narration. Revisit affected documentation if subsequent edits change its meaning.
+
+Use the task's required validation, including preserved behavior and interactions between paths. Broaden checks when changes, failures, or unresolved concerns justify them.

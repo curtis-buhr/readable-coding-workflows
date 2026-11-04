@@ -1,0 +1,6709 @@
+{
+  "schemaVersion": 1,
+  "experiment": "001-four-variants",
+  "model": "gpt-6.1-sol",
+  "reasoningEffort": "xhigh",
+  "variants": {
+    "A": "Task only",
+    "B": "Style only",
+    "C": "Process only",
+    "D": "Style and process"
+  },
+  "sourceHash": "sha256-byte-exact",
+  "experimentElapsedSeconds": 5587.652,
+  "baselines": [
+    {
+      "family": "cache",
+      "status": "evaluated",
+      "cases": [
+        {
+          "id": "cache.strict-30-second-boundary",
+          "introduced": 0,
+          "passed": true
+        },
+        {
+          "id": "cache.expiration-from-load-completion",
+          "introduced": 0,
+          "passed": true
+        },
+        {
+          "id": "cache.invalidate-and-clear",
+          "introduced": 0,
+          "passed": true
+        },
+        {
+          "id": "cache.failure-does-not-refresh",
+          "introduced": 0,
+          "passed": true
+        },
+        {
+          "id": "cache.reject-null-and-empty",
+          "introduced": 0,
+          "passed": true
+        },
+        {
+          "id": "reader.preserves-spelling-and-trims-lookup",
+          "introduced": 0,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "family": "config",
+      "status": "evaluated",
+      "cases": [
+        {
+          "id": "legacy.defaults",
+          "introduced": 0,
+          "passed": true
+        },
+        {
+          "id": "legacy.explicit-fields",
+          "introduced": 0,
+          "passed": true
+        },
+        {
+          "id": "legacy.disabled-adapter",
+          "introduced": 0,
+          "passed": true
+        },
+        {
+          "id": "legacy.adapter-timeout-unit",
+          "introduced": 0,
+          "passed": true
+        },
+        {
+          "id": "legacy.malformed",
+          "introduced": 0,
+          "passed": true
+        },
+        {
+          "id": "legacy.field-bounds",
+          "introduced": 0,
+          "passed": true
+        },
+        {
+          "id": "legacy.invalid-endpoints",
+          "introduced": 0,
+          "passed": true
+        },
+        {
+          "id": "legacy.unsupported-version",
+          "introduced": 0,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "family": "import",
+      "status": "evaluated",
+      "cases": [
+        {
+          "id": "store.missing-and-snapshot",
+          "introduced": 0,
+          "passed": true
+        },
+        {
+          "id": "store.adjust-failures-are-atomic",
+          "introduced": 0,
+          "passed": true
+        },
+        {
+          "id": "store.ordinal-case-sensitive-until-r3",
+          "introduced": 0,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "family": "scheduler",
+      "status": "evaluated",
+      "cases": [
+        {
+          "id": "calendar.capacity-and-half-open-intervals",
+          "introduced": 0,
+          "passed": true
+        },
+        {
+          "id": "calendar.cancellation-and-snapshot-independence",
+          "introduced": 0,
+          "passed": true
+        },
+        {
+          "id": "calendar.rejects-invalid-bookings-before-mutation",
+          "introduced": 0,
+          "passed": true
+        },
+        {
+          "id": "calendar.independent-capacity-does-not-overflow",
+          "introduced": 0,
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "runs": [
+    {
+      "id": "cache-A-r1",
+      "family": "cache",
+      "variant": "A",
+      "revision": 1,
+      "predecessor": null,
+      "sourceDirectory": "submissions/cache-A-r1",
+      "sourceFiles": [
+        {
+          "path": "CatalogCache.cs",
+          "sha256": "0cd9de1effc0080cfbc05fa91d1488eaabee7509a78787620c7d38f9c60b81fe"
+        },
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProductCardReader.cs",
+          "sha256": "c552ffd7f51d35bf38bf678635afeaf81c1f7bf4a3c280de87312dac0b516ba0"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "cache.strict-30-second-boundary",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.expiration-from-load-completion",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.invalidate-and-clear",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.failure-does-not-refresh",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.reject-null-and-empty",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "reader.preserves-spelling-and-trims-lookup",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "batch.order-duplicates-and-one-enumeration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unavailable-shared-and-next-call-retries",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unexpected-errors-propagate",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.original-ordinal-case-sensitive",
+            "introduced": 1,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 193.7
+      },
+      "usage": {
+        "inputTokens": 100105,
+        "cachedInputTokens": 62592,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 6745,
+        "reasoningOutputTokens": 1961
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 81,
+        "inlineComments": 0,
+        "documented": 0,
+        "declarations": 10,
+        "documentedChanged": 0,
+        "changedDeclarations": 2
+      }
+    },
+    {
+      "id": "cache-A-r2",
+      "family": "cache",
+      "variant": "A",
+      "revision": 2,
+      "predecessor": "cache-A-r1",
+      "sourceDirectory": "submissions/cache-A-r2",
+      "sourceFiles": [
+        {
+          "path": "CatalogCache.cs",
+          "sha256": "526f68c59a13a99a8300486ffc042d42487b4bcdab52b3b1e64a8fc02aa79243"
+        },
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProductCardReader.cs",
+          "sha256": "6d8e92aad64f4a23d76357caaca47bbf1b82103c11297c226356e12e1424d77d"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "cache.strict-30-second-boundary",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.expiration-from-load-completion",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.invalidate-and-clear",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.failure-does-not-refresh",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.reject-null-and-empty",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "reader.preserves-spelling-and-trims-lookup",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "batch.order-duplicates-and-one-enumeration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unavailable-shared-and-next-call-retries",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unexpected-errors-propagate",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.original-ordinal-case-sensitive",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "freshness.success-and-strict-default",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.stale-fallback-no-age-reset",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.age-checked-when-loader-throws",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.only-transient-errors-are-eligible",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.missing-invalidated-and-cleared",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.invalid-policy-before-work",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.freshness-fallback-and-default",
+            "introduced": 2,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 297.835
+      },
+      "usage": {
+        "inputTokens": 202692,
+        "cachedInputTokens": 179712,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 9314,
+        "reasoningOutputTokens": 3108
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 118,
+        "inlineComments": 0,
+        "documented": 0,
+        "declarations": 13,
+        "documentedChanged": 0,
+        "changedDeclarations": 6
+      }
+    },
+    {
+      "id": "cache-A-r3",
+      "family": "cache",
+      "variant": "A",
+      "revision": 3,
+      "predecessor": "cache-A-r2",
+      "sourceDirectory": "submissions/cache-A-r3",
+      "sourceFiles": [
+        {
+          "path": "CatalogCache.cs",
+          "sha256": "25bb0a18e7ec61000e65d284468f03fdba919c6eb8f31fb5b074597879ee4178"
+        },
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProductCardReader.cs",
+          "sha256": "4d1dbcc9d624cd4a5b90c1b2505ed46ee17f8d0a3e99a9a321846b4ad094b219"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "cache.strict-30-second-boundary",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.expiration-from-load-completion",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.invalidate-and-clear",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.failure-does-not-refresh",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.reject-null-and-empty",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "reader.preserves-spelling-and-trims-lookup",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "batch.order-duplicates-and-one-enumeration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unavailable-shared-and-next-call-retries",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unexpected-errors-propagate",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "freshness.success-and-strict-default",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.stale-fallback-no-age-reset",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.age-checked-when-loader-throws",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.only-transient-errors-are-eligible",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.missing-invalidated-and-cleared",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.invalid-policy-before-work",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.freshness-fallback-and-default",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "identity.direct-cache-and-invalidation",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.invalid-keys-across-entry-points",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.invariant-and-original-card-spelling",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.batch-duplicates-for-both-policies",
+            "introduced": 3,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 256.712
+      },
+      "usage": {
+        "inputTokens": 237743,
+        "cachedInputTokens": 213632,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 7930,
+        "reasoningOutputTokens": 2819
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 120,
+        "inlineComments": 0,
+        "documented": 0,
+        "declarations": 13,
+        "documentedChanged": 0,
+        "changedDeclarations": 4
+      }
+    },
+    {
+      "id": "cache-B-r1",
+      "family": "cache",
+      "variant": "B",
+      "revision": 1,
+      "predecessor": null,
+      "sourceDirectory": "submissions/cache-B-r1",
+      "sourceFiles": [
+        {
+          "path": "CatalogCache.cs",
+          "sha256": "0cd9de1effc0080cfbc05fa91d1488eaabee7509a78787620c7d38f9c60b81fe"
+        },
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProductCardReader.cs",
+          "sha256": "ef193e68984dbb0da8fa677658d17d872e3ac09c2f92e089ed409e17ae7e95fc"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "cache.strict-30-second-boundary",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.expiration-from-load-completion",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.invalidate-and-clear",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.failure-does-not-refresh",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.reject-null-and-empty",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "reader.preserves-spelling-and-trims-lookup",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "batch.order-duplicates-and-one-enumeration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unavailable-shared-and-next-call-retries",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unexpected-errors-propagate",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.original-ordinal-case-sensitive",
+            "introduced": 1,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 260.043
+      },
+      "usage": {
+        "inputTokens": 212025,
+        "cachedInputTokens": 188800,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 9023,
+        "reasoningOutputTokens": 3653
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 103,
+        "inlineComments": 5,
+        "documented": 4,
+        "declarations": 10,
+        "documentedChanged": 2,
+        "changedDeclarations": 2
+      }
+    },
+    {
+      "id": "cache-B-r2",
+      "family": "cache",
+      "variant": "B",
+      "revision": 2,
+      "predecessor": "cache-B-r1",
+      "sourceDirectory": "submissions/cache-B-r2",
+      "sourceFiles": [
+        {
+          "path": "CatalogCache.cs",
+          "sha256": "4687a0ffb084fef808fcc6df3d9b6b3b9d42890cec94f8f976f0dd0464e7bc2f"
+        },
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProductCardReader.cs",
+          "sha256": "11a4b2b002f4bf717966fc45d604eb70e39ef77e63913b8ed5aa18b9e786c84b"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "cache.strict-30-second-boundary",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.expiration-from-load-completion",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.invalidate-and-clear",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.failure-does-not-refresh",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.reject-null-and-empty",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "reader.preserves-spelling-and-trims-lookup",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "batch.order-duplicates-and-one-enumeration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unavailable-shared-and-next-call-retries",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unexpected-errors-propagate",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.original-ordinal-case-sensitive",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "freshness.success-and-strict-default",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.stale-fallback-no-age-reset",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.age-checked-when-loader-throws",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.only-transient-errors-are-eligible",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.missing-invalidated-and-cleared",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.invalid-policy-before-work",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.freshness-fallback-and-default",
+            "introduced": 2,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 327.789
+      },
+      "usage": {
+        "inputTokens": 252609,
+        "cachedInputTokens": 219008,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 11903,
+        "reasoningOutputTokens": 3650
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 193,
+        "inlineComments": 12,
+        "documented": 12,
+        "declarations": 13,
+        "documentedChanged": 6,
+        "changedDeclarations": 6
+      }
+    },
+    {
+      "id": "cache-B-r3",
+      "family": "cache",
+      "variant": "B",
+      "revision": 3,
+      "predecessor": "cache-B-r2",
+      "sourceDirectory": "submissions/cache-B-r3",
+      "sourceFiles": [
+        {
+          "path": "CatalogCache.cs",
+          "sha256": "a55784d23e3bd636f777adba258dfb310294d2e67ee55b2fc76fa4ab3e35c4f5"
+        },
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProductCardReader.cs",
+          "sha256": "5ee97886e529c70524c3adb28f14c84fcfc91c3cdba626f920402fcbc5a885fe"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "cache.strict-30-second-boundary",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.expiration-from-load-completion",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.invalidate-and-clear",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.failure-does-not-refresh",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.reject-null-and-empty",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "reader.preserves-spelling-and-trims-lookup",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "batch.order-duplicates-and-one-enumeration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unavailable-shared-and-next-call-retries",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unexpected-errors-propagate",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "freshness.success-and-strict-default",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.stale-fallback-no-age-reset",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.age-checked-when-loader-throws",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.only-transient-errors-are-eligible",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.missing-invalidated-and-cleared",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.invalid-policy-before-work",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.freshness-fallback-and-default",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "identity.direct-cache-and-invalidation",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.invalid-keys-across-entry-points",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.invariant-and-original-card-spelling",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.batch-duplicates-for-both-policies",
+            "introduced": 3,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 309.588
+      },
+      "usage": {
+        "inputTokens": 241716,
+        "cachedInputTokens": 188416,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 11288,
+        "reasoningOutputTokens": 3063
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 213,
+        "inlineComments": 15,
+        "documented": 13,
+        "declarations": 14,
+        "documentedChanged": 5,
+        "changedDeclarations": 5
+      }
+    },
+    {
+      "id": "cache-C-r1",
+      "family": "cache",
+      "variant": "C",
+      "revision": 1,
+      "predecessor": null,
+      "sourceDirectory": "submissions/cache-C-r1",
+      "sourceFiles": [
+        {
+          "path": "CatalogCache.cs",
+          "sha256": "0cd9de1effc0080cfbc05fa91d1488eaabee7509a78787620c7d38f9c60b81fe"
+        },
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProductCardReader.cs",
+          "sha256": "e851cd09c1d32e9eb6f84149e8ea09864ad3740be16757a7fd632c07a31d6108"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "cache.strict-30-second-boundary",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.expiration-from-load-completion",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.invalidate-and-clear",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.failure-does-not-refresh",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.reject-null-and-empty",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "reader.preserves-spelling-and-trims-lookup",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "batch.order-duplicates-and-one-enumeration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unavailable-shared-and-next-call-retries",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unexpected-errors-propagate",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.original-ordinal-case-sensitive",
+            "introduced": 1,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 294.762
+      },
+      "usage": {
+        "inputTokens": 268811,
+        "cachedInputTokens": 225152,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 9992,
+        "reasoningOutputTokens": 3336
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 82,
+        "inlineComments": 0,
+        "documented": 1,
+        "declarations": 10,
+        "documentedChanged": 1,
+        "changedDeclarations": 2
+      }
+    },
+    {
+      "id": "cache-C-r2",
+      "family": "cache",
+      "variant": "C",
+      "revision": 2,
+      "predecessor": "cache-C-r1",
+      "sourceDirectory": "submissions/cache-C-r2",
+      "sourceFiles": [
+        {
+          "path": "CatalogCache.cs",
+          "sha256": "4976e666e3fa3c49906038760179b86d9ad55793cdc96e4858eafc46f3dabbb1"
+        },
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProductCardReader.cs",
+          "sha256": "e36be23c825f5453ca6ef4a07846e4e495b7a612eedc25091ab338ddb08fccc9"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "cache.strict-30-second-boundary",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.expiration-from-load-completion",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.invalidate-and-clear",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.failure-does-not-refresh",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.reject-null-and-empty",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "reader.preserves-spelling-and-trims-lookup",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "batch.order-duplicates-and-one-enumeration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unavailable-shared-and-next-call-retries",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unexpected-errors-propagate",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.original-ordinal-case-sensitive",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "freshness.success-and-strict-default",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.stale-fallback-no-age-reset",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.age-checked-when-loader-throws",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.only-transient-errors-are-eligible",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.missing-invalidated-and-cleared",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.invalid-policy-before-work",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.freshness-fallback-and-default",
+            "introduced": 2,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 354.904
+      },
+      "usage": {
+        "inputTokens": 272443,
+        "cachedInputTokens": 244608,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 12023,
+        "reasoningOutputTokens": 3977
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 120,
+        "inlineComments": 0,
+        "documented": 2,
+        "declarations": 13,
+        "documentedChanged": 2,
+        "changedDeclarations": 6
+      }
+    },
+    {
+      "id": "cache-C-r3",
+      "family": "cache",
+      "variant": "C",
+      "revision": 3,
+      "predecessor": "cache-C-r2",
+      "sourceDirectory": "submissions/cache-C-r3",
+      "sourceFiles": [
+        {
+          "path": "CatalogCache.cs",
+          "sha256": "ce7d1da0ae06477b8fc30c3550275a908d4adf3e7978b35a273856c0070ee15c"
+        },
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProductCardReader.cs",
+          "sha256": "987147c5b497008d3ab1e781b13be10fa4f3b20b415e3e392a8b065c357c45ce"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "cache.strict-30-second-boundary",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.expiration-from-load-completion",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.invalidate-and-clear",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.failure-does-not-refresh",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.reject-null-and-empty",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "reader.preserves-spelling-and-trims-lookup",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "batch.order-duplicates-and-one-enumeration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unavailable-shared-and-next-call-retries",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unexpected-errors-propagate",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "freshness.success-and-strict-default",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.stale-fallback-no-age-reset",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.age-checked-when-loader-throws",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.only-transient-errors-are-eligible",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.missing-invalidated-and-cleared",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.invalid-policy-before-work",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.freshness-fallback-and-default",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "identity.direct-cache-and-invalidation",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.invalid-keys-across-entry-points",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.invariant-and-original-card-spelling",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.batch-duplicates-for-both-policies",
+            "introduced": 3,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 421.823
+      },
+      "usage": {
+        "inputTokens": 390553,
+        "cachedInputTokens": 362496,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 13944,
+        "reasoningOutputTokens": 4341
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 123,
+        "inlineComments": 0,
+        "documented": 2,
+        "declarations": 14,
+        "documentedChanged": 1,
+        "changedDeclarations": 5
+      }
+    },
+    {
+      "id": "cache-D-r1",
+      "family": "cache",
+      "variant": "D",
+      "revision": 1,
+      "predecessor": null,
+      "sourceDirectory": "submissions/cache-D-r1",
+      "sourceFiles": [
+        {
+          "path": "CatalogCache.cs",
+          "sha256": "0cd9de1effc0080cfbc05fa91d1488eaabee7509a78787620c7d38f9c60b81fe"
+        },
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProductCardReader.cs",
+          "sha256": "73e094dcc7c72276f17f8899e37264cc8b3434645485a1253d790fd99b7def56"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "cache.strict-30-second-boundary",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.expiration-from-load-completion",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.invalidate-and-clear",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.failure-does-not-refresh",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.reject-null-and-empty",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "reader.preserves-spelling-and-trims-lookup",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "batch.order-duplicates-and-one-enumeration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unavailable-shared-and-next-call-retries",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unexpected-errors-propagate",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.original-ordinal-case-sensitive",
+            "introduced": 1,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 333.06
+      },
+      "usage": {
+        "inputTokens": 224031,
+        "cachedInputTokens": 200960,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 11327,
+        "reasoningOutputTokens": 4102
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 112,
+        "inlineComments": 5,
+        "documented": 4,
+        "declarations": 10,
+        "documentedChanged": 2,
+        "changedDeclarations": 2
+      }
+    },
+    {
+      "id": "cache-D-r2",
+      "family": "cache",
+      "variant": "D",
+      "revision": 2,
+      "predecessor": "cache-D-r1",
+      "sourceDirectory": "submissions/cache-D-r2",
+      "sourceFiles": [
+        {
+          "path": "CatalogCache.cs",
+          "sha256": "f531efa1a5c4d5d14eb008441d8ee6dd48cbb2e9cce92cbe6b51b2902ebba393"
+        },
+        {
+          "path": "CatalogValue.cs",
+          "sha256": "f2654c0e984b35b98fdba16f516fbe094d2d097e45b0df829d6396f6dfa6a4a8"
+        },
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "FreshnessPolicy.cs",
+          "sha256": "76fa438fa93986ca61751468e66ba521050ce9a964763c820f0043f532b49826"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProductCardReader.cs",
+          "sha256": "66c6150152f4fc3c5e99c2e78833aa08d4918d25a043118cf9678b033d7525f8"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "cache.strict-30-second-boundary",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.expiration-from-load-completion",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.invalidate-and-clear",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.failure-does-not-refresh",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.reject-null-and-empty",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "reader.preserves-spelling-and-trims-lookup",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "batch.order-duplicates-and-one-enumeration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unavailable-shared-and-next-call-retries",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unexpected-errors-propagate",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.original-ordinal-case-sensitive",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "freshness.success-and-strict-default",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.stale-fallback-no-age-reset",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.age-checked-when-loader-throws",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.only-transient-errors-are-eligible",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.missing-invalidated-and-cleared",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.invalid-policy-before-work",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.freshness-fallback-and-default",
+            "introduced": 2,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 504.803
+      },
+      "usage": {
+        "inputTokens": 373198,
+        "cachedInputTokens": 353536,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 15920,
+        "reasoningOutputTokens": 5259
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 4,
+        "lines": 206,
+        "inlineComments": 12,
+        "documented": 11,
+        "declarations": 13,
+        "documentedChanged": 6,
+        "changedDeclarations": 6
+      }
+    },
+    {
+      "id": "cache-D-r3",
+      "family": "cache",
+      "variant": "D",
+      "revision": 3,
+      "predecessor": "cache-D-r2",
+      "sourceDirectory": "submissions/cache-D-r3",
+      "sourceFiles": [
+        {
+          "path": "CatalogCache.cs",
+          "sha256": "d231a8257d97972fae6c9a81085ebed3107e8f7c00b1c99ef01b20eb12289cd0"
+        },
+        {
+          "path": "CatalogValue.cs",
+          "sha256": "f2654c0e984b35b98fdba16f516fbe094d2d097e45b0df829d6396f6dfa6a4a8"
+        },
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "FreshnessPolicy.cs",
+          "sha256": "76fa438fa93986ca61751468e66ba521050ce9a964763c820f0043f532b49826"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProductCardReader.cs",
+          "sha256": "77759eae03a04cc825425d4d65f802376fce54b2738b3e1b663b11a9b98d5d86"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "cache.strict-30-second-boundary",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.expiration-from-load-completion",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.invalidate-and-clear",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.failure-does-not-refresh",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "cache.reject-null-and-empty",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "reader.preserves-spelling-and-trims-lookup",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "batch.order-duplicates-and-one-enumeration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unavailable-shared-and-next-call-retries",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.unexpected-errors-propagate",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "freshness.success-and-strict-default",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.stale-fallback-no-age-reset",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.age-checked-when-loader-throws",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.only-transient-errors-are-eligible",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.missing-invalidated-and-cleared",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "freshness.invalid-policy-before-work",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.freshness-fallback-and-default",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "identity.direct-cache-and-invalidation",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.invalid-keys-across-entry-points",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.invariant-and-original-card-spelling",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.batch-duplicates-for-both-policies",
+            "introduced": 3,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 374.916
+      },
+      "usage": {
+        "inputTokens": 318545,
+        "cachedInputTokens": 289664,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 14027,
+        "reasoningOutputTokens": 4109
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 4,
+        "lines": 221,
+        "inlineComments": 15,
+        "documented": 12,
+        "declarations": 14,
+        "documentedChanged": 5,
+        "changedDeclarations": 5
+      }
+    },
+    {
+      "id": "config-A-r1",
+      "family": "config",
+      "variant": "A",
+      "revision": 1,
+      "predecessor": null,
+      "sourceDirectory": "submissions/config-A-r1",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DeploymentAdapter.cs",
+          "sha256": "eb78267f57593b0edcbd64b39e31a08e4173218e4b3fbad40efe6c1734c5f82d"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProfileCodec.cs",
+          "sha256": "d45b7a2b644e2d0742a4845c7fe858695c5001e0b56a6a0aefaea28c4a1bae03"
+        },
+        {
+          "path": "ProfileMigrator.cs",
+          "sha256": "7d05acef64951c7df38905b33d3ea8b302b3ca5f1af09d363ce90434e54ff50f"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "legacy.defaults",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.explicit-fields",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.disabled-adapter",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.adapter-timeout-unit",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.malformed",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.field-bounds",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.invalid-endpoints",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.unsupported-version",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-parsing",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-defaults-and-unknowns",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-schema-errors",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.canonical-roundtrip",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-adapter",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.original-canonical-shape",
+            "introduced": 1,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 195.083
+      },
+      "usage": {
+        "inputTokens": 150347,
+        "cachedInputTokens": 128000,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 5960,
+        "reasoningOutputTokens": 2329
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 3,
+        "lines": 94,
+        "inlineComments": 0,
+        "documented": 0,
+        "declarations": 8,
+        "documentedChanged": 0,
+        "changedDeclarations": 3
+      }
+    },
+    {
+      "id": "config-A-r2",
+      "family": "config",
+      "variant": "A",
+      "revision": 2,
+      "predecessor": "config-A-r1",
+      "sourceDirectory": "submissions/config-A-r2",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DeploymentAdapter.cs",
+          "sha256": "4f64d79c360227d6d5505ea883fcef0615a66cbb5d851671bbdec82fbb8b760f"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProfileCodec.cs",
+          "sha256": "5b300109361ca1fafceb085079e78bb9921154bd4c5cfc82178682bea952dffd"
+        },
+        {
+          "path": "ProfileMigrator.cs",
+          "sha256": "5e3930d5817e9983f068df27428aae2673d4c3e07eba87e7e36af07abbc031e9"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "legacy.defaults",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.explicit-fields",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.disabled-adapter",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.adapter-timeout-unit",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.malformed",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.field-bounds",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.invalid-endpoints",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.unsupported-version",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-parsing",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-defaults-and-unknowns",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-schema-errors",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.canonical-roundtrip",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-adapter",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "retry.backoff-propagates",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "retry.canonical-shape",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "retry.backoff-validation",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.atomic-default",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.best-effort",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.atomic-success-order-and-single-enumeration",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.null-collection-and-invalid-mode",
+            "introduced": 2,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 221.806
+      },
+      "usage": {
+        "inputTokens": 199882,
+        "cachedInputTokens": 177536,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 7526,
+        "reasoningOutputTokens": 1864
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 3,
+        "lines": 156,
+        "inlineComments": 0,
+        "documented": 0,
+        "declarations": 13,
+        "documentedChanged": 0,
+        "changedDeclarations": 10
+      }
+    },
+    {
+      "id": "config-A-r3",
+      "family": "config",
+      "variant": "A",
+      "revision": 3,
+      "predecessor": "config-A-r2",
+      "sourceDirectory": "submissions/config-A-r3",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DeploymentAdapter.cs",
+          "sha256": "83840fcbc0f7e3b1ed4bc6caa301d53ba7579919ed45ab0836ae665f663bff1b"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProfileCodec.cs",
+          "sha256": "7fced596be75599bb2211e6f92cf6061175ca783851601bb579de65c4c3db9ae"
+        },
+        {
+          "path": "ProfileMigrator.cs",
+          "sha256": "5e3930d5817e9983f068df27428aae2673d4c3e07eba87e7e36af07abbc031e9"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "legacy.defaults",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.explicit-fields",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.disabled-adapter",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.adapter-timeout-unit",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.malformed",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.field-bounds",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.invalid-endpoints",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.unsupported-version",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-parsing",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-defaults-and-unknowns",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-schema-errors",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.canonical-roundtrip",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-adapter",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "retry.backoff-propagates",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "retry.canonical-shape",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "retry.backoff-validation",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.atomic-default",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.best-effort",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.atomic-success-order-and-single-enumeration",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.null-collection-and-invalid-mode",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "budget.inclusive-edge",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "budget.reject-both-versions-before-disabled",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "budget.batch-both-modes",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "endpoint.no-query-fragment-credentials",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "endpoint.health-joins-original-spelling",
+            "introduced": 3,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 273.148
+      },
+      "usage": {
+        "inputTokens": 238755,
+        "cachedInputTokens": 214400,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 7655,
+        "reasoningOutputTokens": 2756
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 3,
+        "lines": 161,
+        "inlineComments": 0,
+        "documented": 0,
+        "declarations": 13,
+        "documentedChanged": 0,
+        "changedDeclarations": 2
+      }
+    },
+    {
+      "id": "config-B-r1",
+      "family": "config",
+      "variant": "B",
+      "revision": 1,
+      "predecessor": null,
+      "sourceDirectory": "submissions/config-B-r1",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DeploymentAdapter.cs",
+          "sha256": "9b8b52201879d41e3811f548122a1149b11ec6612444c10dfefbcf5e213a4d80"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProfileCodec.cs",
+          "sha256": "738d14799588f86d284f94d900939056344ec5df4f7b63466e55db09a5e34087"
+        },
+        {
+          "path": "ProfileMigrator.cs",
+          "sha256": "0d3f14ebbc7bedd05675e4f69f51833d676967cc3887eff4852bf98464fbbd9c"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "legacy.defaults",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.explicit-fields",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.disabled-adapter",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.adapter-timeout-unit",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.malformed",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.field-bounds",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.invalid-endpoints",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.unsupported-version",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-parsing",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-defaults-and-unknowns",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-schema-errors",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.canonical-roundtrip",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-adapter",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.original-canonical-shape",
+            "introduced": 1,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 294.536
+      },
+      "usage": {
+        "inputTokens": 277961,
+        "cachedInputTokens": 262912,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 9865,
+        "reasoningOutputTokens": 3537
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 3,
+        "lines": 183,
+        "inlineComments": 9,
+        "documented": 11,
+        "declarations": 13,
+        "documentedChanged": 8,
+        "changedDeclarations": 8
+      }
+    },
+    {
+      "id": "config-B-r2",
+      "family": "config",
+      "variant": "B",
+      "revision": 2,
+      "predecessor": "config-B-r1",
+      "sourceDirectory": "submissions/config-B-r2",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DeploymentAdapter.cs",
+          "sha256": "48ea5b51f17925a098037cb602a35e98d5871de24ac9e1f343ee4d0626314bc5"
+        },
+        {
+          "path": "MigrationModels.cs",
+          "sha256": "e8a4eb741656df853f856d032ee257202110f7b551404225e8e7d1f6c1f0bd6f"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProfileCodec.cs",
+          "sha256": "da93aa4aa9565c56b79eb6d91c7117d47f6ac3cd56b4eca13faa95b77cc5aad7"
+        },
+        {
+          "path": "ProfileMigrator.cs",
+          "sha256": "a123270276e48575ca982547ce597020a43535219a316995f1e06bfd7c8f524c"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "legacy.defaults",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.explicit-fields",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.disabled-adapter",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.adapter-timeout-unit",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.malformed",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.field-bounds",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.invalid-endpoints",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.unsupported-version",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-parsing",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-defaults-and-unknowns",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-schema-errors",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.canonical-roundtrip",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-adapter",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "retry.backoff-propagates",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "retry.canonical-shape",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "retry.backoff-validation",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.atomic-default",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.best-effort",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.atomic-success-order-and-single-enumeration",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.null-collection-and-invalid-mode",
+            "introduced": 2,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 366.853
+      },
+      "usage": {
+        "inputTokens": 349894,
+        "cachedInputTokens": 300928,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 12154,
+        "reasoningOutputTokens": 3680
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 4,
+        "lines": 306,
+        "inlineComments": 16,
+        "documented": 18,
+        "declarations": 18,
+        "documentedChanged": 11,
+        "changedDeclarations": 11
+      }
+    },
+    {
+      "id": "config-B-r3",
+      "family": "config",
+      "variant": "B",
+      "revision": 3,
+      "predecessor": "config-B-r2",
+      "sourceDirectory": "submissions/config-B-r3",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DeploymentAdapter.cs",
+          "sha256": "a816be3920b2e8aadaa30efdc3cbf331b85d6967e8ed155977ddb6ec58f538cf"
+        },
+        {
+          "path": "MigrationModels.cs",
+          "sha256": "e8a4eb741656df853f856d032ee257202110f7b551404225e8e7d1f6c1f0bd6f"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProfileCodec.cs",
+          "sha256": "38dffdb7e6d2c1bd012be345a4c4a407091f75e0920108abdc316618212ebac1"
+        },
+        {
+          "path": "ProfileMigrator.cs",
+          "sha256": "a123270276e48575ca982547ce597020a43535219a316995f1e06bfd7c8f524c"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "legacy.defaults",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.explicit-fields",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.disabled-adapter",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.adapter-timeout-unit",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.malformed",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.field-bounds",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.invalid-endpoints",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.unsupported-version",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-parsing",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-defaults-and-unknowns",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-schema-errors",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.canonical-roundtrip",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-adapter",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "retry.backoff-propagates",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "retry.canonical-shape",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "retry.backoff-validation",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.atomic-default",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.best-effort",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.atomic-success-order-and-single-enumeration",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.null-collection-and-invalid-mode",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "budget.inclusive-edge",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "budget.reject-both-versions-before-disabled",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "budget.batch-both-modes",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "endpoint.no-query-fragment-credentials",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "endpoint.health-joins-original-spelling",
+            "introduced": 3,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 352.258
+      },
+      "usage": {
+        "inputTokens": 375640,
+        "cachedInputTokens": 346112,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 9616,
+        "reasoningOutputTokens": 3240
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 4,
+        "lines": 327,
+        "inlineComments": 20,
+        "documented": 18,
+        "declarations": 18,
+        "documentedChanged": 3,
+        "changedDeclarations": 3
+      }
+    },
+    {
+      "id": "config-C-r1",
+      "family": "config",
+      "variant": "C",
+      "revision": 1,
+      "predecessor": null,
+      "sourceDirectory": "submissions/config-C-r1",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DeploymentAdapter.cs",
+          "sha256": "eb78267f57593b0edcbd64b39e31a08e4173218e4b3fbad40efe6c1734c5f82d"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProfileCodec.cs",
+          "sha256": "f64a0ea4f7780b635515cf06835b13e6ecb087af5e72264a6ec2fe1872ec2491"
+        },
+        {
+          "path": "ProfileMigrator.cs",
+          "sha256": "3c7cb7a47567f71476d0af3991059207822b7ab4ad876f162183e501b7c3f56d"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "legacy.defaults",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.explicit-fields",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.disabled-adapter",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.adapter-timeout-unit",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.malformed",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.field-bounds",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.invalid-endpoints",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.unsupported-version",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-parsing",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-defaults-and-unknowns",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-schema-errors",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.canonical-roundtrip",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-adapter",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.original-canonical-shape",
+            "introduced": 1,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 236.216
+      },
+      "usage": {
+        "inputTokens": 188800,
+        "cachedInputTokens": 163328,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 7444,
+        "reasoningOutputTokens": 2180
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 3,
+        "lines": 103,
+        "inlineComments": 0,
+        "documented": 0,
+        "declarations": 8,
+        "documentedChanged": 0,
+        "changedDeclarations": 3
+      }
+    },
+    {
+      "id": "config-C-r2",
+      "family": "config",
+      "variant": "C",
+      "revision": 2,
+      "predecessor": "config-C-r1",
+      "sourceDirectory": "submissions/config-C-r2",
+      "sourceFiles": [
+        {
+          "path": "BatchMigrationResult.cs",
+          "sha256": "26d255b684b6b33e545f1f9fb87f4b7b0c3d944e3f438fae1680716b556d6ae1"
+        },
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DeploymentAdapter.cs",
+          "sha256": "4f64d79c360227d6d5505ea883fcef0615a66cbb5d851671bbdec82fbb8b760f"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProfileCodec.cs",
+          "sha256": "98548a738c7f1427d0ae41e3d1a6c12e59f217a9ccc7f82326cceb646790eb8a"
+        },
+        {
+          "path": "ProfileMigrator.cs",
+          "sha256": "245041b567540ce9c5de2913d324fa517c3fbc1d181d392e20d45528801bfbd6"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "legacy.defaults",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.explicit-fields",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.disabled-adapter",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.adapter-timeout-unit",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.malformed",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.field-bounds",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.invalid-endpoints",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.unsupported-version",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-parsing",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-defaults-and-unknowns",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-schema-errors",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.canonical-roundtrip",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-adapter",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "retry.backoff-propagates",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "retry.canonical-shape",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "retry.backoff-validation",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.atomic-default",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.best-effort",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.atomic-success-order-and-single-enumeration",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.null-collection-and-invalid-mode",
+            "introduced": 2,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 349.811
+      },
+      "usage": {
+        "inputTokens": 286202,
+        "cachedInputTokens": 259712,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 10974,
+        "reasoningOutputTokens": 2655
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 4,
+        "lines": 167,
+        "inlineComments": 0,
+        "documented": 0,
+        "declarations": 13,
+        "documentedChanged": 0,
+        "changedDeclarations": 10
+      }
+    },
+    {
+      "id": "config-C-r3",
+      "family": "config",
+      "variant": "C",
+      "revision": 3,
+      "predecessor": "config-C-r2",
+      "sourceDirectory": "submissions/config-C-r3",
+      "sourceFiles": [
+        {
+          "path": "BatchMigrationResult.cs",
+          "sha256": "26d255b684b6b33e545f1f9fb87f4b7b0c3d944e3f438fae1680716b556d6ae1"
+        },
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DeploymentAdapter.cs",
+          "sha256": "83840fcbc0f7e3b1ed4bc6caa301d53ba7579919ed45ab0836ae665f663bff1b"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProfileCodec.cs",
+          "sha256": "3b8c22793f853952283f3e747dd9471faad976dbe6ebdb108c044ca4a9bebb11"
+        },
+        {
+          "path": "ProfileMigrator.cs",
+          "sha256": "245041b567540ce9c5de2913d324fa517c3fbc1d181d392e20d45528801bfbd6"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "legacy.defaults",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.explicit-fields",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.disabled-adapter",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.adapter-timeout-unit",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.malformed",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.field-bounds",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.invalid-endpoints",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.unsupported-version",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-parsing",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-defaults-and-unknowns",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-schema-errors",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.canonical-roundtrip",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-adapter",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "retry.backoff-propagates",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "retry.canonical-shape",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "retry.backoff-validation",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.atomic-default",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.best-effort",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.atomic-success-order-and-single-enumeration",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.null-collection-and-invalid-mode",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "budget.inclusive-edge",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "budget.reject-both-versions-before-disabled",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "budget.batch-both-modes",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "endpoint.no-query-fragment-credentials",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "endpoint.health-joins-original-spelling",
+            "introduced": 3,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 383.826
+      },
+      "usage": {
+        "inputTokens": 407816,
+        "cachedInputTokens": 380672,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 11005,
+        "reasoningOutputTokens": 3233
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 4,
+        "lines": 173,
+        "inlineComments": 0,
+        "documented": 0,
+        "declarations": 13,
+        "documentedChanged": 0,
+        "changedDeclarations": 2
+      }
+    },
+    {
+      "id": "config-D-r1",
+      "family": "config",
+      "variant": "D",
+      "revision": 1,
+      "predecessor": null,
+      "sourceDirectory": "submissions/config-D-r1",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DeploymentAdapter.cs",
+          "sha256": "eb78267f57593b0edcbd64b39e31a08e4173218e4b3fbad40efe6c1734c5f82d"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProfileCodec.cs",
+          "sha256": "17e42369ba033d5e9e4a7f43830664e3364828fb90e16f1b644aea1669e117a8"
+        },
+        {
+          "path": "ProfileMigrator.cs",
+          "sha256": "aaea520acbe1387f5cd53ee9ad5d922da8604449284309c2be7f137977153403"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "legacy.defaults",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.explicit-fields",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.disabled-adapter",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.adapter-timeout-unit",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.malformed",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.field-bounds",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.invalid-endpoints",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.unsupported-version",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-parsing",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-defaults-and-unknowns",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-schema-errors",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.canonical-roundtrip",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-adapter",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.original-canonical-shape",
+            "introduced": 1,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 500.659
+      },
+      "usage": {
+        "inputTokens": 521764,
+        "cachedInputTokens": 502656,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 15925,
+        "reasoningOutputTokens": 6247
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 3,
+        "lines": 188,
+        "inlineComments": 16,
+        "documented": 9,
+        "declarations": 12,
+        "documentedChanged": 7,
+        "changedDeclarations": 7
+      }
+    },
+    {
+      "id": "config-D-r2",
+      "family": "config",
+      "variant": "D",
+      "revision": 2,
+      "predecessor": "config-D-r1",
+      "sourceDirectory": "submissions/config-D-r2",
+      "sourceFiles": [
+        {
+          "path": "BatchMigrationResult.cs",
+          "sha256": "3a7a09ac70325bcbf7c4cdb0b2349872dc5ebf7cf9239468d419725a1255ddc9"
+        },
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DeploymentAdapter.cs",
+          "sha256": "6d68852c0cf525321c4ffffa6d3fd532054ab460a1f7752aee56884db1fc5809"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProfileCodec.cs",
+          "sha256": "86cbe7edb8f29436098ac6b431974b1837cda28a0f2fa68b392c1520a51c0a0a"
+        },
+        {
+          "path": "ProfileMigrator.cs",
+          "sha256": "499c3f0946fe1b6fdc1bd9adb223e2b45915c7bb0a8d3903c77e776872fe8fee"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "legacy.defaults",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.explicit-fields",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.disabled-adapter",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.adapter-timeout-unit",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.malformed",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.field-bounds",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.invalid-endpoints",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.unsupported-version",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-parsing",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-defaults-and-unknowns",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-schema-errors",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.canonical-roundtrip",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-adapter",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "retry.backoff-propagates",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "retry.canonical-shape",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "retry.backoff-validation",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.atomic-default",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.best-effort",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.atomic-success-order-and-single-enumeration",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.null-collection-and-invalid-mode",
+            "introduced": 2,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 452.245
+      },
+      "usage": {
+        "inputTokens": 347697,
+        "cachedInputTokens": 318720,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 14415,
+        "reasoningOutputTokens": 3758
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 4,
+        "lines": 323,
+        "inlineComments": 27,
+        "documented": 17,
+        "declarations": 17,
+        "documentedChanged": 11,
+        "changedDeclarations": 11
+      }
+    },
+    {
+      "id": "config-D-r3",
+      "family": "config",
+      "variant": "D",
+      "revision": 3,
+      "predecessor": "config-D-r2",
+      "sourceDirectory": "submissions/config-D-r3",
+      "sourceFiles": [
+        {
+          "path": "BatchMigrationResult.cs",
+          "sha256": "3a7a09ac70325bcbf7c4cdb0b2349872dc5ebf7cf9239468d419725a1255ddc9"
+        },
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DeploymentAdapter.cs",
+          "sha256": "a7800acd4c0efc0c87581fe3253fc2b0cd49cc7537ecdacca0336979b9670163"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "ProfileCodec.cs",
+          "sha256": "5c36f7ba99c3715fd6f3200c95266709cb61bcd828a7ce72984edd7c85f5ea36"
+        },
+        {
+          "path": "ProfileMigrator.cs",
+          "sha256": "499c3f0946fe1b6fdc1bd9adb223e2b45915c7bb0a8d3903c77e776872fe8fee"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "legacy.defaults",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.explicit-fields",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.disabled-adapter",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.adapter-timeout-unit",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.malformed",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.field-bounds",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.invalid-endpoints",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "legacy.unsupported-version",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-parsing",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-defaults-and-unknowns",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-schema-errors",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.canonical-roundtrip",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "migration.v2-adapter",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "retry.backoff-propagates",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "retry.canonical-shape",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "retry.backoff-validation",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.atomic-default",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.best-effort",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.atomic-success-order-and-single-enumeration",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.null-collection-and-invalid-mode",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "budget.inclusive-edge",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "budget.reject-both-versions-before-disabled",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "budget.batch-both-modes",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "endpoint.no-query-fragment-credentials",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "endpoint.health-joins-original-spelling",
+            "introduced": 3,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 516.779
+      },
+      "usage": {
+        "inputTokens": 669009,
+        "cachedInputTokens": 632960,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 14660,
+        "reasoningOutputTokens": 4555
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 4,
+        "lines": 344,
+        "inlineComments": 31,
+        "documented": 17,
+        "declarations": 17,
+        "documentedChanged": 3,
+        "changedDeclarations": 3
+      }
+    },
+    {
+      "id": "import-A-r1",
+      "family": "import",
+      "variant": "A",
+      "revision": 1,
+      "predecessor": null,
+      "sourceDirectory": "submissions/import-A-r1",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "StockImporter.cs",
+          "sha256": "136fc6cbaeab346bb60f6d87ef47f23eae7eae2457f19e2a3dc71408b9368ba6"
+        },
+        {
+          "path": "StockStore.cs",
+          "sha256": "7523064040b814920ae5dcdf072db3edbcab96e8ccd3e228a3547845b94bbe72"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "store.missing-and-snapshot",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "store.adjust-failures-are-atomic",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "store.ordinal-case-sensitive-until-r3",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "import.stream-position-and-physical-lines",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.validation-precedence",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.rejected-ids-can-retry-and-casing-is-ordinal",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.overflow-and-ordering",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.null-arguments",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.cross-call-id-reuse-until-r3",
+            "introduced": 1,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 209.962
+      },
+      "usage": {
+        "inputTokens": 172030,
+        "cachedInputTokens": 151424,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 6826,
+        "reasoningOutputTokens": 2708
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 101,
+        "inlineComments": 0,
+        "documented": 0,
+        "declarations": 8,
+        "documentedChanged": 0,
+        "changedDeclarations": 4
+      }
+    },
+    {
+      "id": "import-A-r2",
+      "family": "import",
+      "variant": "A",
+      "revision": 2,
+      "predecessor": "import-A-r1",
+      "sourceDirectory": "submissions/import-A-r2",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "StockImporter.cs",
+          "sha256": "c188112f8c716fd697d5cc45915d626cf69d482e6daabcc07638780705ecd17f"
+        },
+        {
+          "path": "StockStore.cs",
+          "sha256": "7523064040b814920ae5dcdf072db3edbcab96e8ccd3e228a3547845b94bbe72"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "store.missing-and-snapshot",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "store.adjust-failures-are-atomic",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "store.ordinal-case-sensitive-until-r3",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "import.stream-position-and-physical-lines",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.validation-precedence",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.rejected-ids-can-retry-and-casing-is-ordinal",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.overflow-and-ordering",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.null-arguments",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.cross-call-id-reuse-until-r3",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "modes.preview-tentative-quantity-no-side-effects",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.atomic-success-and-partial-compatibility",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.atomic-failure-reports-all",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.reader-errors-are-atomic",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.invalid-enum-checked-before-input",
+            "introduced": 2,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 236.273
+      },
+      "usage": {
+        "inputTokens": 198501,
+        "cachedInputTokens": 175104,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 7526,
+        "reasoningOutputTokens": 3375
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 131,
+        "inlineComments": 0,
+        "documented": 0,
+        "declarations": 9,
+        "documentedChanged": 0,
+        "changedDeclarations": 2
+      }
+    },
+    {
+      "id": "import-A-r3",
+      "family": "import",
+      "variant": "A",
+      "revision": 3,
+      "predecessor": "import-A-r2",
+      "sourceDirectory": "submissions/import-A-r3",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "StockImporter.cs",
+          "sha256": "e1c68683535704841217db4cd0f3a470ddfc2c7cc114933a642e8368c51f2bc8"
+        },
+        {
+          "path": "StockStore.cs",
+          "sha256": "6a20c02b555e9a00359c7372ed501d70a6d870bc6fe9a541f34fa795171d8f90"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "store.missing-and-snapshot",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "store.adjust-failures-are-atomic",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "import.stream-position-and-physical-lines",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.validation-precedence",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.rejected-ids-can-retry-and-casing-is-ordinal",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.overflow-and-ordering",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.null-arguments",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "modes.preview-tentative-quantity-no-side-effects",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.atomic-success-and-partial-compatibility",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.atomic-failure-reports-all",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.reader-errors-are-atomic",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.invalid-enum-checked-before-input",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "identity.ordinal-sku-and-first-spelling",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.preview-and-atomic-use-normalized-tentative-store",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.committed-ids-cross-overload-and-store-scoped",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.rollback-does-not-reserve-id-or-key",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "cancel.pre-cancel-does-not-read",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "cancel.during-row-and-eof-leaves-state-unchanged",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "cancel.partial-reader-error-rolls-back",
+            "introduced": 3,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 262.045
+      },
+      "usage": {
+        "inputTokens": 231779,
+        "cachedInputTokens": 215808,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 8071,
+        "reasoningOutputTokens": 2156
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 149,
+        "inlineComments": 1,
+        "documented": 0,
+        "declarations": 14,
+        "documentedChanged": 0,
+        "changedDeclarations": 8
+      }
+    },
+    {
+      "id": "import-B-r1",
+      "family": "import",
+      "variant": "B",
+      "revision": 1,
+      "predecessor": null,
+      "sourceDirectory": "submissions/import-B-r1",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "StockImporter.cs",
+          "sha256": "35d79f09269cf80592ed18b2209409445a8a6f5ed4634c8c14a8f6eb1694a00c"
+        },
+        {
+          "path": "StockStore.cs",
+          "sha256": "7523064040b814920ae5dcdf072db3edbcab96e8ccd3e228a3547845b94bbe72"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "store.missing-and-snapshot",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "store.adjust-failures-are-atomic",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "store.ordinal-case-sensitive-until-r3",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "import.stream-position-and-physical-lines",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.validation-precedence",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.rejected-ids-can-retry-and-casing-is-ordinal",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.overflow-and-ordering",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.null-arguments",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.cross-call-id-reuse-until-r3",
+            "introduced": 1,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 218.512
+      },
+      "usage": {
+        "inputTokens": 151484,
+        "cachedInputTokens": 130688,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 8258,
+        "reasoningOutputTokens": 2937
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 123,
+        "inlineComments": 6,
+        "documented": 4,
+        "declarations": 8,
+        "documentedChanged": 4,
+        "changedDeclarations": 4
+      }
+    },
+    {
+      "id": "import-B-r2",
+      "family": "import",
+      "variant": "B",
+      "revision": 2,
+      "predecessor": "import-B-r1",
+      "sourceDirectory": "submissions/import-B-r2",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "ImportMode.cs",
+          "sha256": "18e6bee779772cd64f024d8b0ece8f22d5bbfe55a839f4ede31b5aca4f727b12"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "StockImporter.cs",
+          "sha256": "9189eb4e7e94119fafca6cbabec7ab0d252054e386928068c22b40ef11678c6c"
+        },
+        {
+          "path": "StockStore.cs",
+          "sha256": "7523064040b814920ae5dcdf072db3edbcab96e8ccd3e228a3547845b94bbe72"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "store.missing-and-snapshot",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "store.adjust-failures-are-atomic",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "store.ordinal-case-sensitive-until-r3",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "import.stream-position-and-physical-lines",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.validation-precedence",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.rejected-ids-can-retry-and-casing-is-ordinal",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.overflow-and-ordering",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.null-arguments",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.cross-call-id-reuse-until-r3",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "modes.preview-tentative-quantity-no-side-effects",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.atomic-success-and-partial-compatibility",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.atomic-failure-reports-all",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.reader-errors-are-atomic",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.invalid-enum-checked-before-input",
+            "introduced": 2,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 324.801
+      },
+      "usage": {
+        "inputTokens": 290224,
+        "cachedInputTokens": 250112,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 11127,
+        "reasoningOutputTokens": 3859
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 3,
+        "lines": 202,
+        "inlineComments": 12,
+        "documented": 7,
+        "declarations": 11,
+        "documentedChanged": 4,
+        "changedDeclarations": 4
+      }
+    },
+    {
+      "id": "import-B-r3",
+      "family": "import",
+      "variant": "B",
+      "revision": 3,
+      "predecessor": "import-B-r2",
+      "sourceDirectory": "submissions/import-B-r3",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "ImportMode.cs",
+          "sha256": "d5616b5dc9507285fcbd1e7887761c384d5b1e6fef7b6aa51bc49cc81c331fcd"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "StockImporter.cs",
+          "sha256": "f260c6110efdf040fac9a062424b352c4ee8732216b042df8a8e0528b9647a9c"
+        },
+        {
+          "path": "StockStore.cs",
+          "sha256": "5db4f8376e362d070b9795488fb668f74ef727dfb346e7477fd20f7f44cf4619"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "store.missing-and-snapshot",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "store.adjust-failures-are-atomic",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "import.stream-position-and-physical-lines",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.validation-precedence",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.rejected-ids-can-retry-and-casing-is-ordinal",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.overflow-and-ordering",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.null-arguments",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "modes.preview-tentative-quantity-no-side-effects",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.atomic-success-and-partial-compatibility",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.atomic-failure-reports-all",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.reader-errors-are-atomic",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.invalid-enum-checked-before-input",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "identity.ordinal-sku-and-first-spelling",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.preview-and-atomic-use-normalized-tentative-store",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.committed-ids-cross-overload-and-store-scoped",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.rollback-does-not-reserve-id-or-key",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "cancel.pre-cancel-does-not-read",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "cancel.during-row-and-eof-leaves-state-unchanged",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "cancel.partial-reader-error-rolls-back",
+            "introduced": 3,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 437.25
+      },
+      "usage": {
+        "inputTokens": 360911,
+        "cachedInputTokens": 333056,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 15512,
+        "reasoningOutputTokens": 5038
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 3,
+        "lines": 276,
+        "inlineComments": 14,
+        "documented": 17,
+        "declarations": 17,
+        "documentedChanged": 12,
+        "changedDeclarations": 12
+      }
+    },
+    {
+      "id": "import-C-r1",
+      "family": "import",
+      "variant": "C",
+      "revision": 1,
+      "predecessor": null,
+      "sourceDirectory": "submissions/import-C-r1",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "ImportResult.cs",
+          "sha256": "b52f18d2f8a10e2b2cd5d489d51f7f9cb63527961abb0c72fab101ae62a17f37"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "StockImporter.cs",
+          "sha256": "da1202163581d80c691667da47660e3bd5d75d47ae9647f4f40e3a370742a39e"
+        },
+        {
+          "path": "StockStore.cs",
+          "sha256": "7523064040b814920ae5dcdf072db3edbcab96e8ccd3e228a3547845b94bbe72"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "store.missing-and-snapshot",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "store.adjust-failures-are-atomic",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "store.ordinal-case-sensitive-until-r3",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "import.stream-position-and-physical-lines",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.validation-precedence",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.rejected-ids-can-retry-and-casing-is-ordinal",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.overflow-and-ordering",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.null-arguments",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.cross-call-id-reuse-until-r3",
+            "introduced": 1,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 337.934
+      },
+      "usage": {
+        "inputTokens": 311995,
+        "cachedInputTokens": 292992,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 10617,
+        "reasoningOutputTokens": 4150
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 3,
+        "lines": 102,
+        "inlineComments": 0,
+        "documented": 0,
+        "declarations": 8,
+        "documentedChanged": 0,
+        "changedDeclarations": 4
+      }
+    },
+    {
+      "id": "import-C-r2",
+      "family": "import",
+      "variant": "C",
+      "revision": 2,
+      "predecessor": "import-C-r1",
+      "sourceDirectory": "submissions/import-C-r2",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "ImportMode.cs",
+          "sha256": "940a6f53c637e3ff880bd15a7f72ac71dd88dc3de7fbb6461383769292042a45"
+        },
+        {
+          "path": "ImportResult.cs",
+          "sha256": "b52f18d2f8a10e2b2cd5d489d51f7f9cb63527961abb0c72fab101ae62a17f37"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "StockImporter.cs",
+          "sha256": "5059ba732468ee407d08140e01ef6f28c745ee8f8a8cc9d04ec6f8af435c6fc8"
+        },
+        {
+          "path": "StockStore.cs",
+          "sha256": "7523064040b814920ae5dcdf072db3edbcab96e8ccd3e228a3547845b94bbe72"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "store.missing-and-snapshot",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "store.adjust-failures-are-atomic",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "store.ordinal-case-sensitive-until-r3",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "import.stream-position-and-physical-lines",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.validation-precedence",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.rejected-ids-can-retry-and-casing-is-ordinal",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.overflow-and-ordering",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.null-arguments",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.cross-call-id-reuse-until-r3",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "modes.preview-tentative-quantity-no-side-effects",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.atomic-success-and-partial-compatibility",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.atomic-failure-reports-all",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.reader-errors-are-atomic",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.invalid-enum-checked-before-input",
+            "introduced": 2,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 378.227
+      },
+      "usage": {
+        "inputTokens": 362014,
+        "cachedInputTokens": 328192,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 11657,
+        "reasoningOutputTokens": 4164
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 4,
+        "lines": 149,
+        "inlineComments": 1,
+        "documented": 1,
+        "declarations": 9,
+        "documentedChanged": 1,
+        "changedDeclarations": 2
+      }
+    },
+    {
+      "id": "import-C-r3",
+      "family": "import",
+      "variant": "C",
+      "revision": 3,
+      "predecessor": "import-C-r2",
+      "sourceDirectory": "submissions/import-C-r3",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "ImportMode.cs",
+          "sha256": "be6f872d01fd0bc256fef10882fac4e8c96a84d969170aaac3e11287d33fb09b"
+        },
+        {
+          "path": "ImportResult.cs",
+          "sha256": "b52f18d2f8a10e2b2cd5d489d51f7f9cb63527961abb0c72fab101ae62a17f37"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "StockImporter.cs",
+          "sha256": "a6d49eeec4d7eb81a0ad56de2cba38b4005edfe0aad9d74d12dafbcf28959483"
+        },
+        {
+          "path": "StockStore.cs",
+          "sha256": "b0cf25d84cdf7bbd3c805ed7afe2ee3f3f2540787c258ab24713e256889af1b6"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "store.missing-and-snapshot",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "store.adjust-failures-are-atomic",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "import.stream-position-and-physical-lines",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.validation-precedence",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.rejected-ids-can-retry-and-casing-is-ordinal",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.overflow-and-ordering",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.null-arguments",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "modes.preview-tentative-quantity-no-side-effects",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.atomic-success-and-partial-compatibility",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.atomic-failure-reports-all",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.reader-errors-are-atomic",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.invalid-enum-checked-before-input",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "identity.ordinal-sku-and-first-spelling",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.preview-and-atomic-use-normalized-tentative-store",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.committed-ids-cross-overload-and-store-scoped",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.rollback-does-not-reserve-id-or-key",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "cancel.pre-cancel-does-not-read",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "cancel.during-row-and-eof-leaves-state-unchanged",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "cancel.partial-reader-error-rolls-back",
+            "introduced": 3,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 519.631
+      },
+      "usage": {
+        "inputTokens": 512341,
+        "cachedInputTokens": 493056,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 16710,
+        "reasoningOutputTokens": 6531
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 4,
+        "lines": 169,
+        "inlineComments": 0,
+        "documented": 1,
+        "declarations": 14,
+        "documentedChanged": 1,
+        "changedDeclarations": 9
+      }
+    },
+    {
+      "id": "import-D-r1",
+      "family": "import",
+      "variant": "D",
+      "revision": 1,
+      "predecessor": null,
+      "sourceDirectory": "submissions/import-D-r1",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "StockImporter.cs",
+          "sha256": "054a1193c748ea75784fd2e20df17f7c9bfc5fca3ede956c0093c4cea2119dc5"
+        },
+        {
+          "path": "StockStore.cs",
+          "sha256": "7523064040b814920ae5dcdf072db3edbcab96e8ccd3e228a3547845b94bbe72"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "store.missing-and-snapshot",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "store.adjust-failures-are-atomic",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "store.ordinal-case-sensitive-until-r3",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "import.stream-position-and-physical-lines",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.validation-precedence",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.rejected-ids-can-retry-and-casing-is-ordinal",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.overflow-and-ordering",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.null-arguments",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.cross-call-id-reuse-until-r3",
+            "introduced": 1,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 355.737
+      },
+      "usage": {
+        "inputTokens": 270253,
+        "cachedInputTokens": 256256,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 12201,
+        "reasoningOutputTokens": 3984
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 142,
+        "inlineComments": 11,
+        "documented": 5,
+        "declarations": 9,
+        "documentedChanged": 5,
+        "changedDeclarations": 5
+      }
+    },
+    {
+      "id": "import-D-r2",
+      "family": "import",
+      "variant": "D",
+      "revision": 2,
+      "predecessor": "import-D-r1",
+      "sourceDirectory": "submissions/import-D-r2",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "ImportMode.cs",
+          "sha256": "1f743130fefd85c0ad2547a22743969395259b2c7d29bedbd10a0e24cd515c49"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "StockImporter.cs",
+          "sha256": "13b3c73832185998dbbd27a43beae8f820131b072e5b51503c430b0e797f62de"
+        },
+        {
+          "path": "StockStore.cs",
+          "sha256": "7523064040b814920ae5dcdf072db3edbcab96e8ccd3e228a3547845b94bbe72"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "store.missing-and-snapshot",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "store.adjust-failures-are-atomic",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "store.ordinal-case-sensitive-until-r3",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "import.stream-position-and-physical-lines",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.validation-precedence",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.rejected-ids-can-retry-and-casing-is-ordinal",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.overflow-and-ordering",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.null-arguments",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.cross-call-id-reuse-until-r3",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "modes.preview-tentative-quantity-no-side-effects",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.atomic-success-and-partial-compatibility",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.atomic-failure-reports-all",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.reader-errors-are-atomic",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.invalid-enum-checked-before-input",
+            "introduced": 2,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 358.082
+      },
+      "usage": {
+        "inputTokens": 291574,
+        "cachedInputTokens": 275584,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 12432,
+        "reasoningOutputTokens": 4081
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 3,
+        "lines": 210,
+        "inlineComments": 14,
+        "documented": 7,
+        "declarations": 11,
+        "documentedChanged": 3,
+        "changedDeclarations": 3
+      }
+    },
+    {
+      "id": "import-D-r3",
+      "family": "import",
+      "variant": "D",
+      "revision": 3,
+      "predecessor": "import-D-r2",
+      "sourceDirectory": "submissions/import-D-r3",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "ImportMode.cs",
+          "sha256": "d1d46d3cc1668be8fd6fa2e1a97693fc41093a0813689e8e3be5b5e0fa24df4a"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        },
+        {
+          "path": "StockImporter.cs",
+          "sha256": "842c55a314dc05c9fa54e669b5018dffc72bddf15db99647be2c0a70bccfd4d9"
+        },
+        {
+          "path": "StockStore.cs",
+          "sha256": "4253cb0928ca5522720c703814e4a85c54f93340a217299c08b2993d06781343"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "store.missing-and-snapshot",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "store.adjust-failures-are-atomic",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "import.stream-position-and-physical-lines",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.validation-precedence",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.rejected-ids-can-retry-and-casing-is-ordinal",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.overflow-and-ordering",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "import.null-arguments",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "modes.preview-tentative-quantity-no-side-effects",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.atomic-success-and-partial-compatibility",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.atomic-failure-reports-all",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.reader-errors-are-atomic",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "modes.invalid-enum-checked-before-input",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "identity.ordinal-sku-and-first-spelling",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.preview-and-atomic-use-normalized-tentative-store",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.committed-ids-cross-overload-and-store-scoped",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "identity.rollback-does-not-reserve-id-or-key",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "cancel.pre-cancel-does-not-read",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "cancel.during-row-and-eof-leaves-state-unchanged",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "cancel.partial-reader-error-rolls-back",
+            "introduced": 3,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 511.151
+      },
+      "usage": {
+        "inputTokens": 376975,
+        "cachedInputTokens": 316672,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 17628,
+        "reasoningOutputTokens": 5792
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 3,
+        "lines": 290,
+        "inlineComments": 19,
+        "documented": 16,
+        "declarations": 16,
+        "documentedChanged": 11,
+        "changedDeclarations": 11
+      }
+    },
+    {
+      "id": "scheduler-A-r1",
+      "family": "scheduler",
+      "variant": "A",
+      "revision": 1,
+      "predecessor": null,
+      "sourceDirectory": "submissions/scheduler-A-r1",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DockCalendar.cs",
+          "sha256": "b24137965aa0ac0d0b0a8ac04e3d6bd1fc5c680e85c70b8afc9aa44b396c0ad8"
+        },
+        {
+          "path": "DockDispatcher.cs",
+          "sha256": "effb1e87367270ac3332dc0b9bb80de3f96623901517d786b48f51c39b8f0692"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "calendar.capacity-and-half-open-intervals",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.cancellation-and-snapshot-independence",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.rejects-invalid-bookings-before-mutation",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.independent-capacity-does-not-overflow",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "dispatch.earliest-contiguous-fit",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.respects-latest-end-and-large-duration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.validation-and-cancellation-integration",
+            "introduced": 1,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 270.683
+      },
+      "usage": {
+        "inputTokens": 212773,
+        "cachedInputTokens": 170496,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 9377,
+        "reasoningOutputTokens": 3893
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 137,
+        "inlineComments": 1,
+        "documented": 0,
+        "declarations": 11,
+        "documentedChanged": 0,
+        "changedDeclarations": 5
+      }
+    },
+    {
+      "id": "scheduler-A-r2",
+      "family": "scheduler",
+      "variant": "A",
+      "revision": 2,
+      "predecessor": "scheduler-A-r1",
+      "sourceDirectory": "submissions/scheduler-A-r2",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DockCalendar.cs",
+          "sha256": "b24137965aa0ac0d0b0a8ac04e3d6bd1fc5c680e85c70b8afc9aa44b396c0ad8"
+        },
+        {
+          "path": "DockDispatcher.cs",
+          "sha256": "8c68059856834a88303236c5461534df252a786cd3699863c4811744d27dbadb"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "calendar.capacity-and-half-open-intervals",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.cancellation-and-snapshot-independence",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.rejects-invalid-bookings-before-mutation",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.independent-capacity-does-not-overflow",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "dispatch.earliest-contiguous-fit",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.respects-latest-end-and-large-duration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.validation-and-cancellation-integration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.best-effort-has-positional-results",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.strict-rollback-keeps-preexisting-bookings",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.strict-success-and-empty-batches",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.validates-all-input-before-mutating",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.rejected-id-can-be-used-by-later-best-effort-entry",
+            "introduced": 2,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 206.261
+      },
+      "usage": {
+        "inputTokens": 157062,
+        "cachedInputTokens": 133248,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 7557,
+        "reasoningOutputTokens": 1850
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 185,
+        "inlineComments": 1,
+        "documented": 0,
+        "declarations": 13,
+        "documentedChanged": 0,
+        "changedDeclarations": 3
+      }
+    },
+    {
+      "id": "scheduler-A-r3",
+      "family": "scheduler",
+      "variant": "A",
+      "revision": 3,
+      "predecessor": "scheduler-A-r2",
+      "sourceDirectory": "submissions/scheduler-A-r3",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DockCalendar.cs",
+          "sha256": "9938c098d615684a575589ef2e69467038be01efe0858cc714acb13e634d6981"
+        },
+        {
+          "path": "DockDispatcher.cs",
+          "sha256": "03311c40036bdf5ac224bf2fff9fc30c6d99b183ece1e07b6c06c6bda9859ccc"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "calendar.capacity-and-half-open-intervals",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.cancellation-and-snapshot-independence",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.rejects-invalid-bookings-before-mutation",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.independent-capacity-does-not-overflow",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "dispatch.earliest-contiguous-fit",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.respects-latest-end-and-large-duration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.validation-and-cancellation-integration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.best-effort-has-positional-results",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.strict-rollback-keeps-preexisting-bookings",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.strict-success-and-empty-batches",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.validates-all-input-before-mutating",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.rejected-id-can-be-used-by-later-best-effort-entry",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "shared.direct-reservation-enforces-both-capacities",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "blackouts.scopes-and-half-open-boundaries",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "dispatch.earliest-fit-combines-shared-limit-and-blackouts",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "batch.both-policies-use-shared-rules-and-release-rollback",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "configuration.validation-and-independence",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "shared.large-capacity-does-not-wrap",
+            "introduced": 3,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 356.108
+      },
+      "usage": {
+        "inputTokens": 284712,
+        "cachedInputTokens": 268032,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 13270,
+        "reasoningOutputTokens": 3978
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 242,
+        "inlineComments": 1,
+        "documented": 0,
+        "declarations": 17,
+        "documentedChanged": 0,
+        "changedDeclarations": 6
+      }
+    },
+    {
+      "id": "scheduler-B-r1",
+      "family": "scheduler",
+      "variant": "B",
+      "revision": 1,
+      "predecessor": null,
+      "sourceDirectory": "submissions/scheduler-B-r1",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DockCalendar.cs",
+          "sha256": "1d393ef32b411c412cb25740f9a64bea6a03e44000d6354b2eecc656ae7e7175"
+        },
+        {
+          "path": "DockDispatcher.cs",
+          "sha256": "cd74761a9ffadf8fe48f23952167983c5e111751dd01c7404bea5c2dbe51d7c7"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "calendar.capacity-and-half-open-intervals",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.cancellation-and-snapshot-independence",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.rejects-invalid-bookings-before-mutation",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.independent-capacity-does-not-overflow",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "dispatch.earliest-contiguous-fit",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.respects-latest-end-and-large-duration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.validation-and-cancellation-integration",
+            "introduced": 1,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 341.477
+      },
+      "usage": {
+        "inputTokens": 233321,
+        "cachedInputTokens": 185216,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 11626,
+        "reasoningOutputTokens": 4705
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 198,
+        "inlineComments": 13,
+        "documented": 11,
+        "declarations": 11,
+        "documentedChanged": 6,
+        "changedDeclarations": 6
+      }
+    },
+    {
+      "id": "scheduler-B-r2",
+      "family": "scheduler",
+      "variant": "B",
+      "revision": 2,
+      "predecessor": "scheduler-B-r1",
+      "sourceDirectory": "submissions/scheduler-B-r2",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DockCalendar.cs",
+          "sha256": "1d393ef32b411c412cb25740f9a64bea6a03e44000d6354b2eecc656ae7e7175"
+        },
+        {
+          "path": "DockDispatcher.cs",
+          "sha256": "e4ef80230fc077f9fb4ca71952c46864248681bbc38b1591a73c6940998119e1"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "calendar.capacity-and-half-open-intervals",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.cancellation-and-snapshot-independence",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.rejects-invalid-bookings-before-mutation",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.independent-capacity-does-not-overflow",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "dispatch.earliest-contiguous-fit",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.respects-latest-end-and-large-duration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.validation-and-cancellation-integration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.best-effort-has-positional-results",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.strict-rollback-keeps-preexisting-bookings",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.strict-success-and-empty-batches",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.validates-all-input-before-mutating",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.rejected-id-can-be-used-by-later-best-effort-entry",
+            "introduced": 2,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 291.968
+      },
+      "usage": {
+        "inputTokens": 280400,
+        "cachedInputTokens": 263296,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 10118,
+        "reasoningOutputTokens": 3965
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 268,
+        "inlineComments": 17,
+        "documented": 13,
+        "declarations": 13,
+        "documentedChanged": 3,
+        "changedDeclarations": 3
+      }
+    },
+    {
+      "id": "scheduler-B-r3",
+      "family": "scheduler",
+      "variant": "B",
+      "revision": 3,
+      "predecessor": "scheduler-B-r2",
+      "sourceDirectory": "submissions/scheduler-B-r3",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DockCalendar.cs",
+          "sha256": "979a012aa77b285871defae080fc2a4043173b933159fc33fa94aa21a367a2bc"
+        },
+        {
+          "path": "DockDispatcher.cs",
+          "sha256": "fbb57bf6a225779614223f12f2b22c444639ed9310c83f28684cf95cb89dc164"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "calendar.capacity-and-half-open-intervals",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.cancellation-and-snapshot-independence",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.rejects-invalid-bookings-before-mutation",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.independent-capacity-does-not-overflow",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "dispatch.earliest-contiguous-fit",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.respects-latest-end-and-large-duration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.validation-and-cancellation-integration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.best-effort-has-positional-results",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.strict-rollback-keeps-preexisting-bookings",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.strict-success-and-empty-batches",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.validates-all-input-before-mutating",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.rejected-id-can-be-used-by-later-best-effort-entry",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "shared.direct-reservation-enforces-both-capacities",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "blackouts.scopes-and-half-open-boundaries",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "dispatch.earliest-fit-combines-shared-limit-and-blackouts",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "batch.both-policies-use-shared-rules-and-release-rollback",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "configuration.validation-and-independence",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "shared.large-capacity-does-not-wrap",
+            "introduced": 3,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 456.949
+      },
+      "usage": {
+        "inputTokens": 258389,
+        "cachedInputTokens": 237440,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 18695,
+        "reasoningOutputTokens": 5921
+      },
+      "process": {
+        "planningRequested": false,
+        "status": "no-plan-observed"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 355,
+        "inlineComments": 19,
+        "documented": 18,
+        "declarations": 18,
+        "documentedChanged": 8,
+        "changedDeclarations": 8
+      }
+    },
+    {
+      "id": "scheduler-C-r1",
+      "family": "scheduler",
+      "variant": "C",
+      "revision": 1,
+      "predecessor": null,
+      "sourceDirectory": "submissions/scheduler-C-r1",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DockCalendar.cs",
+          "sha256": "1e9f57f6fdf876fe70565209c8f621ae80c72048bc29ac54ce3af1aa3119138a"
+        },
+        {
+          "path": "DockDispatcher.cs",
+          "sha256": "c2f123628289068663ee86116999e9fbcc8293841410b5a0019a07804de15871"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "calendar.capacity-and-half-open-intervals",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.cancellation-and-snapshot-independence",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.rejects-invalid-bookings-before-mutation",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.independent-capacity-does-not-overflow",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "dispatch.earliest-contiguous-fit",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.respects-latest-end-and-large-duration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.validation-and-cancellation-integration",
+            "introduced": 1,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 359.082
+      },
+      "usage": {
+        "inputTokens": 215411,
+        "cachedInputTokens": 172288,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 10684,
+        "reasoningOutputTokens": 2948
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 145,
+        "inlineComments": 0,
+        "documented": 0,
+        "declarations": 11,
+        "documentedChanged": 0,
+        "changedDeclarations": 5
+      }
+    },
+    {
+      "id": "scheduler-C-r2",
+      "family": "scheduler",
+      "variant": "C",
+      "revision": 2,
+      "predecessor": "scheduler-C-r1",
+      "sourceDirectory": "submissions/scheduler-C-r2",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DockCalendar.cs",
+          "sha256": "1e9f57f6fdf876fe70565209c8f621ae80c72048bc29ac54ce3af1aa3119138a"
+        },
+        {
+          "path": "DockDispatcher.cs",
+          "sha256": "e2a3ebb55e08ab80a0d7c2eb26cda23a3e31e1cacd0a4d057bf386ad43c1ef12"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "calendar.capacity-and-half-open-intervals",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.cancellation-and-snapshot-independence",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.rejects-invalid-bookings-before-mutation",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.independent-capacity-does-not-overflow",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "dispatch.earliest-contiguous-fit",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.respects-latest-end-and-large-duration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.validation-and-cancellation-integration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.best-effort-has-positional-results",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.strict-rollback-keeps-preexisting-bookings",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.strict-success-and-empty-batches",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.validates-all-input-before-mutating",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.rejected-id-can-be-used-by-later-best-effort-entry",
+            "introduced": 2,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 285.621
+      },
+      "usage": {
+        "inputTokens": 251123,
+        "cachedInputTokens": 233088,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 9790,
+        "reasoningOutputTokens": 2988
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 190,
+        "inlineComments": 0,
+        "documented": 0,
+        "declarations": 13,
+        "documentedChanged": 0,
+        "changedDeclarations": 3
+      }
+    },
+    {
+      "id": "scheduler-C-r3",
+      "family": "scheduler",
+      "variant": "C",
+      "revision": 3,
+      "predecessor": "scheduler-C-r2",
+      "sourceDirectory": "submissions/scheduler-C-r3",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DockCalendar.cs",
+          "sha256": "a26299bddff61ec5634c3900542d82d1cb9687d8208c8db62c519e42a9eca22c"
+        },
+        {
+          "path": "DockDispatcher.cs",
+          "sha256": "0b07fcf4bcd61ea25eeb13a2c986a38cb44e654693133dc53a1fea4ca00575fc"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "calendar.capacity-and-half-open-intervals",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.cancellation-and-snapshot-independence",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.rejects-invalid-bookings-before-mutation",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.independent-capacity-does-not-overflow",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "dispatch.earliest-contiguous-fit",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.respects-latest-end-and-large-duration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.validation-and-cancellation-integration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.best-effort-has-positional-results",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.strict-rollback-keeps-preexisting-bookings",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.strict-success-and-empty-batches",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.validates-all-input-before-mutating",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.rejected-id-can-be-used-by-later-best-effort-entry",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "shared.direct-reservation-enforces-both-capacities",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "blackouts.scopes-and-half-open-boundaries",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "dispatch.earliest-fit-combines-shared-limit-and-blackouts",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "batch.both-policies-use-shared-rules-and-release-rollback",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "configuration.validation-and-independence",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "shared.large-capacity-does-not-wrap",
+            "introduced": 3,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 553.192
+      },
+      "usage": {
+        "inputTokens": 488652,
+        "cachedInputTokens": 457984,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 20502,
+        "reasoningOutputTokens": 6608
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 254,
+        "inlineComments": 0,
+        "documented": 3,
+        "declarations": 17,
+        "documentedChanged": 3,
+        "changedDeclarations": 8
+      }
+    },
+    {
+      "id": "scheduler-D-r1",
+      "family": "scheduler",
+      "variant": "D",
+      "revision": 1,
+      "predecessor": null,
+      "sourceDirectory": "submissions/scheduler-D-r1",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DockCalendar.cs",
+          "sha256": "a9c882f5a544ccd59c1ecbed66b5ade2a3e17ec4e3019f505b81fddf8fe61ec2"
+        },
+        {
+          "path": "DockDispatcher.cs",
+          "sha256": "4b7e88b9159b9966820e1c1b03deb8f26e489d73c2d7a1e5a56adea18e980f61"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "calendar.capacity-and-half-open-intervals",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.cancellation-and-snapshot-independence",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.rejects-invalid-bookings-before-mutation",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.independent-capacity-does-not-overflow",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "dispatch.earliest-contiguous-fit",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.respects-latest-end-and-large-duration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.validation-and-cancellation-integration",
+            "introduced": 1,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 495.806
+      },
+      "usage": {
+        "inputTokens": 408651,
+        "cachedInputTokens": 392064,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 15600,
+        "reasoningOutputTokens": 5149
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 223,
+        "inlineComments": 12,
+        "documented": 12,
+        "declarations": 12,
+        "documentedChanged": 7,
+        "changedDeclarations": 7
+      }
+    },
+    {
+      "id": "scheduler-D-r2",
+      "family": "scheduler",
+      "variant": "D",
+      "revision": 2,
+      "predecessor": "scheduler-D-r1",
+      "sourceDirectory": "submissions/scheduler-D-r2",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DockCalendar.cs",
+          "sha256": "a9c882f5a544ccd59c1ecbed66b5ade2a3e17ec4e3019f505b81fddf8fe61ec2"
+        },
+        {
+          "path": "DockDispatcher.cs",
+          "sha256": "a53910b89a5f4e695252b2b700219ab667a4e88e52a009d419aa490a17c45164"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "calendar.capacity-and-half-open-intervals",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.cancellation-and-snapshot-independence",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.rejects-invalid-bookings-before-mutation",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.independent-capacity-does-not-overflow",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "dispatch.earliest-contiguous-fit",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.respects-latest-end-and-large-duration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.validation-and-cancellation-integration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.best-effort-has-positional-results",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.strict-rollback-keeps-preexisting-bookings",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.strict-success-and-empty-batches",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.validates-all-input-before-mutating",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.rejected-id-can-be-used-by-later-best-effort-entry",
+            "introduced": 2,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 353.854
+      },
+      "usage": {
+        "inputTokens": 309254,
+        "cachedInputTokens": 278784,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 14123,
+        "reasoningOutputTokens": 5114
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 299,
+        "inlineComments": 18,
+        "documented": 14,
+        "declarations": 14,
+        "documentedChanged": 3,
+        "changedDeclarations": 3
+      }
+    },
+    {
+      "id": "scheduler-D-r3",
+      "family": "scheduler",
+      "variant": "D",
+      "revision": 3,
+      "predecessor": "scheduler-D-r2",
+      "sourceDirectory": "submissions/scheduler-D-r3",
+      "sourceFiles": [
+        {
+          "path": "Challenge.csproj",
+          "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395"
+        },
+        {
+          "path": "DockCalendar.cs",
+          "sha256": "5c6242fd8722ae89f3918467e521567158025c0193dd568daa3003c343a3311c"
+        },
+        {
+          "path": "DockDispatcher.cs",
+          "sha256": "69f1ba1f57c5298e5b87a8b6297d2d071555277ecd8f94c15877ea02f2368389"
+        },
+        {
+          "path": "NuGet.Config",
+          "sha256": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef"
+        }
+      ],
+      "grading": {
+        "status": "evaluated",
+        "cases": [
+          {
+            "id": "calendar.capacity-and-half-open-intervals",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.cancellation-and-snapshot-independence",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.rejects-invalid-bookings-before-mutation",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "calendar.independent-capacity-does-not-overflow",
+            "introduced": 0,
+            "passed": true
+          },
+          {
+            "id": "dispatch.earliest-contiguous-fit",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.respects-latest-end-and-large-duration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "dispatch.validation-and-cancellation-integration",
+            "introduced": 1,
+            "passed": true
+          },
+          {
+            "id": "batch.best-effort-has-positional-results",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.strict-rollback-keeps-preexisting-bookings",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.strict-success-and-empty-batches",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.validates-all-input-before-mutating",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "batch.rejected-id-can-be-used-by-later-best-effort-entry",
+            "introduced": 2,
+            "passed": true
+          },
+          {
+            "id": "shared.direct-reservation-enforces-both-capacities",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "blackouts.scopes-and-half-open-boundaries",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "dispatch.earliest-fit-combines-shared-limit-and-blackouts",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "batch.both-policies-use-shared-rules-and-release-rollback",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "configuration.validation-and-independence",
+            "introduced": 3,
+            "passed": true
+          },
+          {
+            "id": "shared.large-capacity-does-not-wrap",
+            "introduced": 3,
+            "passed": true
+          }
+        ]
+      },
+      "timing": {
+        "seconds": 446.325
+      },
+      "usage": {
+        "inputTokens": 312233,
+        "cachedInputTokens": 266880,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 17987,
+        "reasoningOutputTokens": 4185
+      },
+      "process": {
+        "planningRequested": true,
+        "status": "observed-before"
+      },
+      "readability": {
+        "files": 2,
+        "lines": 372,
+        "inlineComments": 22,
+        "documented": 17,
+        "declarations": 17,
+        "documentedChanged": 6,
+        "changedDeclarations": 6
+      }
+    }
+  ],
+  "review": [
+    {
+      "family": "cache",
+      "variant": "A",
+      "flow": 1,
+      "comments": 0,
+      "docs": 0,
+      "drift": 2,
+      "evidence": "R3 ProductCardReader.cs:26 and 36–56 uses null to encode unavailability and duplicates key canonicalization. CatalogCache.cs:32–44 leaves the retention and failure-time checks implicit. Public policy overloads have no XML contracts."
+    },
+    {
+      "family": "cache",
+      "variant": "B",
+      "flow": 2,
+      "comments": 2,
+      "docs": 1,
+      "drift": 2,
+      "evidence": "R3 CatalogCache.cs:28–32 and 61–85 names time thresholds and timestamps. R2 CatalogCache.cs:66–82 explains failure-time age and retention. Read XML leaves ineligible transient failure propagation implicit."
+    },
+    {
+      "family": "cache",
+      "variant": "C",
+      "flow": 2,
+      "comments": 0,
+      "docs": 1,
+      "drift": 2,
+      "evidence": "R3 ProductCardReader.cs:32–60 distinguishes original spelling, lookup key, and named outcomes. CatalogCache.cs:31–44 leaves fallback timing and timestamp preservation implicit. Batch XML summaries omit per-key error and exception details."
+    },
+    {
+      "family": "cache",
+      "variant": "D",
+      "flow": 2,
+      "comments": 2,
+      "docs": 2,
+      "drift": 2,
+      "evidence": "R2 CatalogCache.cs:49–67 explains failure-time age, why an entry must remain cached, and why fallback keeps the timestamp. R1 ProductCardReader.cs:24–38 covers order, spelling, error results, and exception propagation. R3 contracts track canonical identity and distinct null and blank errors."
+    },
+    {
+      "family": "config",
+      "variant": "A",
+      "flow": 1,
+      "comments": 0,
+      "docs": 0,
+      "drift": 2,
+      "evidence": "Canonical JSON shape and reservedNames are readable. R3 ProfileCodec.cs:29–57 leaves URI delimiter checks and retry budget arithmetic in a long Parse method. Public XML contracts are absent."
+    },
+    {
+      "family": "config",
+      "variant": "B",
+      "flow": 2,
+      "comments": 2,
+      "docs": 1,
+      "drift": 2,
+      "evidence": "Version selection and early continues help readers trace precedence. R3 ProfileCodec.cs:57–61 and 96–106 explain budget arithmetic and empty delimiters. Public Parse XML omits endpoint restrictions described in the private helper."
+    },
+    {
+      "family": "config",
+      "variant": "C",
+      "flow": 1,
+      "comments": 0,
+      "docs": 0,
+      "drift": 2,
+      "evidence": "R3 ProfileCodec.cs:54–56 names retryBudgetMs. R2 ProfileMigrator.cs:38–68 calls the success-only reservation set names. Public XML contracts and useful explanations of the URI delimiter checks are absent."
+    },
+    {
+      "family": "config",
+      "variant": "D",
+      "flow": 2,
+      "comments": 2,
+      "docs": 1,
+      "drift": 2,
+      "evidence": "R3 ProfileCodec.cs:61–65 and 93–105 explain budget arithmetic, Int32 safety, and empty delimiters. R2 batch XML covers enumeration and error precedence. R1 DeploymentAdapter.cs:7 lacks a Create contract. The R3 adapter contract tracks the revised URL behavior."
+    },
+    {
+      "family": "import",
+      "variant": "A",
+      "flow": 2,
+      "comments": 1,
+      "docs": 0,
+      "drift": 2,
+      "evidence": "R1 StockImporter.cs:26–65 makes operation order easy to follow. R3 StockStore.cs:39–43 explains ownership transfer. R3 StockImporter.cs:24, 32–34, and 84–93 leaves the reasons for staging and bracketing reads implicit. Run has no XML contract."
+    },
+    {
+      "family": "import",
+      "variant": "B",
+      "flow": 2,
+      "comments": 2,
+      "docs": 2,
+      "drift": 2,
+      "evidence": "R2 StockImporter.cs:121–146 explains zero keys and safe quantity differences. R3 StockImporter.cs:38–52, 65–78, and 115–147 explains EOF cancellation, issue precedence, tentative reservation, and publication. R3 StockStore.cs:67–74 uses committedOperationIds for tentative IDs too."
+    },
+    {
+      "family": "import",
+      "variant": "C",
+      "flow": 2,
+      "comments": 1,
+      "docs": 1,
+      "drift": 2,
+      "evidence": "R2 StockImporter.cs:91–94 explains the safe Int32 difference. The R3 summary at lines 13–19 covers staging and rollback, with reader ownership and cancellation checkpoints left implicit. R3 ImportMode.cs:5 updates the mode documentation for the new timing."
+    },
+    {
+      "family": "import",
+      "variant": "D",
+      "flow": 2,
+      "comments": 2,
+      "docs": 2,
+      "drift": 2,
+      "evidence": "ApplyRow separates validation from stream orchestration. R2 StockImporter.cs:82–104 explains EOF publication and explicit zero keys. R3 StockImporter.cs:40–56, 70–72, 109–119, and 153–170 documents cancellation and reserve-after-adjust, and updates partial-commit timing."
+    },
+    {
+      "family": "scheduler",
+      "variant": "A",
+      "flow": 2,
+      "comments": 1,
+      "docs": 0,
+      "drift": 2,
+      "evidence": "R1 DockDispatcher.cs:32 explains half-open boundaries. R2 DockDispatcher.cs:75–95 separates validation from mutation and rollback. R3 DockCalendar.cs:93 explains clipping, while the accumulator invariants at lines 105–138 are implicit. Public method XML is absent."
+    },
+    {
+      "family": "scheduler",
+      "variant": "B",
+      "flow": 2,
+      "comments": 2,
+      "docs": 2,
+      "drift": 2,
+      "evidence": "R1 DockDispatcher.cs:51–88 explains clipped endpoints, global IDs, earliest consecutive fit, and commit. R2 lines 98–139 explains why rollback preserves existing bookings. R3 DockCalendar.cs:135–196 explains shared occupancy and overlapping blackouts."
+    },
+    {
+      "family": "scheduler",
+      "variant": "C",
+      "flow": 2,
+      "comments": 0,
+      "docs": 0,
+      "drift": 2,
+      "evidence": "R2 DockDispatcher.cs:80–101 validates before mutation and rolls back only successful batch bookings. R3 DockCalendar.cs:89–152 leaves endpoint sweep, shared limits, and overlapping blackout handling unexplained. R3 has two accurate constructor summaries, with core method contracts absent."
+    },
+    {
+      "family": "scheduler",
+      "variant": "D",
+      "flow": 2,
+      "comments": 2,
+      "docs": 2,
+      "drift": 2,
+      "evidence": "R1 DockDispatcher.cs:49–113 distinguishes oversized valid requests from malformed input. R3 DockDispatcher.cs:80–125 explains prevalidation and rollback, with the repeat-ID case implicit in XML. R3 DockCalendar.cs:145–188 explains occupancy totals, blackout counts, and half-open endpoints."
+    }
+  ]
+}
