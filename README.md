@@ -1,8 +1,14 @@
 # Improving Readability in Generated Code
 
-Evaluating how comments, naming, and planning affect AI-assisted C# maintenance.
+*Developing and refining workflow instructions that make AI-generated code easier to read, review, and maintain.*
 
-Can we get code that’s easier to review without prescribing every step the agent takes? I started with a preference for short explanations above meaningful chunks, useful `///` contracts, and names that tell me what a value represents. I turned that preference into four workflows and tested them across three revisions of four .NET libraries.
+I want it to be easier for a developer and an AI agent to trade places in the driver’s seat. When I’m directing an agent, I want to be able to follow its work closely enough to catch mistakes, verify decisions, and take over when I need to. Short comments that explain how a chunk of code works, along with names that make the purpose of a value clear, can make that easier.
+
+My goal is to develop a workflow I can use in my own projects. I’m refining what I ask agents to explain, how I ask them to name things, and when I ask them to plan before writing code. I try different versions of the instructions on C# tasks that evolve over several revisions, then use the results to decide what to keep, change, or drop.
+
+The first tests showed that asking for more readable code increased token use and estimated cost. I want that extra work to pay off when I review a change or when an agent picks up the code again. I think of it the same way I think about asking a developer to go back and document a tricky change. It takes time now, and I want that investment to make later changes easier and less expensive.
+
+## Experiment 001
 
 | Workflow | Frozen checks | Candidate time | Tokens | API-equivalent cost |
 | --- | ---: | ---: | ---: | ---: |
