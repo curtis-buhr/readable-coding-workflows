@@ -25,6 +25,10 @@ In the streaming import, a canceled call must leave both stock and operation his
 
 The cache gave us a different kind of evidence. All four variants passed the original suite. During source review, we noticed that a refresh could return stale data after its loader had already removed the entry. We ran the same additional probes against each submission and recorded those findings separately. This is a useful case for checking the boundary of a `catch` block and deciding which failures should trigger fallback. See [Experiment 001](experiments/001-four-variants/).
 
+## Experiment 002 · Workflow efficiency
+
+The next pilot compares the current style instructions with a shorter version. It also measures how much of the payoff comes from the code handed to the next agent. See the [experiment design](experiments/002-workflow-efficiency/) and [API runner guide](harness/API.md).
+
 ## Replay the experiment
 
 With Node.js 22 or later and the .NET 10 SDK, run these commands from the repository root. The replay uses saved source and telemetry and requires no model account.

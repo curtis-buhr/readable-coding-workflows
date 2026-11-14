@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "experiment": "002-workflow-efficiency",
+  "challenge": "incremental-sync",
+  "backend": "openai-responses",
+  "model": "gpt-6.1-sol",
+  "reasoningEffort": "xhigh",
+  "orderSeed": "002-incremental-sync-pilot-v1",
+  "variants": [
+    { "id": "task-only", "instructions": null },
+    { "id": "style-only", "instructions": "workflows/B.txt" },
+    { "id": "short-style", "instructions": "workflows/short-style.txt" }
+  ],
+  "limits": {
+    "maxCalls": 20,
+    "maxInputTokens": 50000,
+    "maxOutputTokens": 4096,
+    "timeoutMs": 720000,
+    "maxToolOutputBytes": 8192
+  }
+}

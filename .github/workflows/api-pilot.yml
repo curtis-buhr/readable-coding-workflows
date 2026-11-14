@@ -1,0 +1,50 @@
+name: Validate API pilot without credentials
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/api-pilot.yml'
+      - 'benchmarks/challenges/incremental-sync/**'
+      - 'experiments/002-workflow-efficiency/**'
+      - 'harness/**'
+      - 'workflows/**'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/api-pilot.yml'
+      - 'benchmarks/challenges/incremental-sync/**'
+      - 'experiments/002-workflow-efficiency/**'
+      - 'harness/**'
+      - 'workflows/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
+        with:
+          dotnet-version: '10.0.403'
+      - name: Verify the frozen reference and deliberate regression
+        run: node benchmarks/challenges/incremental-sync/validate.cjs
+      - name: Print the hashed experiment plan
+        run: node harness/api-run.mjs --dry-run
+      - name: Build the local benchmark image
+        run: docker build -f harness/Dockerfile -t workflow-benchmark:dotnet10 harness
+      - name: Test the API loop and restricted Docker executor
+        run: node --test harness/api-responses.test.mjs harness/isolated-dotnet.test.mjs harness/api-experiment.test.mjs
+        env:
+          WORKFLOW_DOCKER_SMOKE_IMAGE: workflow-benchmark:dotnet10
+      - name: Compile and grade both sandbox baselines
+        run: node harness/api-run.mjs --preflight --image workflow-benchmark:dotnet10

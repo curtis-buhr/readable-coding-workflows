@@ -1,5 +1,7 @@
 # Replaying the experiment
 
+For new API-based runs, see the [Experiment 002 runner guide](API.md).
+
 Run `node harness/replay.mjs` with Node.js 22 or later. The command checks the experiment records, verifies the SHA-256 of every archived source file, and recomputes cumulative time, token use, checks, regressions, documentation coverage, and estimated API-equivalent cost. The cost calculation uses the experiment's standard rates of $2 per million uncached input tokens, $0.10 cached input, $2.50 cache write, and $10 output. The time column sums candidate time, including parallel runs. A regression is a previously passing case that fails in the next revision of the same lineage. Cases superseded by a deliberate requirement change are excluded from that comparison.
 
 Add `--json` for structured output. The replay reads only the archive. To execute a grader against one saved submission, follow the [reproduction guide](../docs/reproduction.md).

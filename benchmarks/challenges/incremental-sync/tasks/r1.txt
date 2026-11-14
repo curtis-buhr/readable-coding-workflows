@@ -1,0 +1,9 @@
+Add durable per-tenant checkpoints to the IncrementalSync library. Keep the existing public SourceRecord, IRecordSink, SyncEngine(IRecordSink), and SyncAsync signatures.
+
+Add public interface ICheckpointStore with long Read(string tenantId) and void Save(string tenantId, long sequence). A missing tenant reads as 0. Add public SyncEngine(IRecordSink sink, ICheckpointStore checkpoints). The one-argument constructor uses an in-memory store private to that engine, with ordinal case-sensitive tenant IDs. Validate both constructor arguments for null.
+
+Validate the entire batch before any sink write or checkpoint change, including records at or below the checkpoint. Tenant IDs must be nonblank. The list and each record must exist. Record sequences must be positive and strictly increasing, and payloads must be non-null. Gaps and empty batches are valid.
+
+Read the current checkpoint and skip every record at or below it. Process eligible records in source order. Pass the caller's cancellation token through to the sink and check it before the first write and before each later write. The sink returns true for a durable acknowledgement or false to stop. On true, save the record's sequence before sending the next record. On false, return without advancing past that record. Return the count of records acknowledged and checkpointed by this call, excluding skipped records.
+
+If the sink or checkpoint store throws, propagate the exception and stop this call. Earlier saved checkpoints stay saved. The caller supplies at most one active sync call at a time and uses ordinal case-sensitive tenant identity. The input is a window onto a complete ordered stream and contains every outstanding record before its largest sequence.
