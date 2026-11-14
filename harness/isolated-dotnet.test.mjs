@@ -30,7 +30,7 @@ function fakeDocker(overrides = {}) {
       calls.push({ args, options });
       const [group, command] = args;
       if (overrides[command]) return overrides[command](args, options);
-      if (group === 'image' && command === 'inspect') return successful(JSON.stringify([imageId, 'linux', null]));
+      if (group === 'image' && command === 'inspect') return successful(JSON.stringify([imageId, 'linux', {}]));
       if (command === 'create') return successful(containerId + '\n');
       if (command === 'start') return successful('build report\n', 'BENCHMARK_INPUT_READY\ncompiler output\n');
       if (command === 'inspect') return successful(JSON.stringify({ Status: 'exited', ExitCode: 0, Error: '' }));
@@ -65,7 +65,7 @@ test('resolves an installed image and rejects an implicit image volume', async (
   const valid = fakeDocker();
   assert.equal(await resolveImageId('local/benchmark:10', valid), imageId);
   assert.deepEqual(valid.calls[0].args.slice(0, 3), ['image', 'inspect', '--format']);
-  const withVolume = fakeDocker({ inspect: () => successful(JSON.stringify([imageId, 'linux', { '/data': {} }])) });
+  const withVolume = fakeDocker({ inspect: () => successful(JSON.stringify([imageId, 'linux', { Volumes: { '/data': {} } }])) });
   await assert.rejects(resolveImageId('local/benchmark:10', withVolume), /no declared volumes/);
   await assert.rejects(resolveImageId('--help', valid), /valid local Docker image/);
 });

@@ -103,9 +103,9 @@ export async function resolveImageId(imageReference, { docker = execDocker } = {
     throw new Error('Supply a valid local Docker image reference');
   }
   const result = await docker(['image', 'inspect', '--format',
-    '[{{json .Id}},{{json .Os}},{{json .Config.Volumes}}]', imageReference]);
-  const [imageId, operatingSystem, volumes] = JSON.parse(requireDockerSuccess('image inspect', result));
-  if (!immutableImage.test(imageId) || operatingSystem !== 'linux' || Object.keys(volumes ?? {}).length > 0) {
+    '[{{json .Id}},{{json .Os}},{{json .Config}}]', imageReference]);
+  const [imageId, operatingSystem, config] = JSON.parse(requireDockerSuccess('image inspect', result));
+  if (!immutableImage.test(imageId) || operatingSystem !== 'linux' || !config || Object.keys(config.Volumes ?? {}).length > 0) {
     throw new Error('Use a Linux Docker image with an immutable image ID and no declared volumes');
   }
   return imageId;
