@@ -1,0 +1,15 @@
+Add a batch operation for independent tenants. All revision 1 behavior still applies to SyncAsync. Define these types in IncrementalSync:
+
+public sealed record TenantBatch(string TenantId, IReadOnlyList<SourceRecord> Records);
+public sealed record TenantProgress(string TenantId, int AcknowledgedCount, bool Blocked);
+public sealed class RetryableSinkException(string message) : Exception(message);
+
+Add this public method to SyncEngine:
+
+ValueTask<IReadOnlyList<TenantProgress>> SyncAllAsync(IReadOnlyList<TenantBatch> batches, CancellationToken cancellationToken = default)
+
+Validate the full input before any sink write or checkpoint change. A null list throws ArgumentNullException. A null batch or repeated tenant ID throws ArgumentException. Apply the same tenant ID and record validation as SyncAsync to each batch. Compare tenant IDs using ordinal case-sensitive equality. Check cancellation before starting work on a valid input.
+
+Process tenants sequentially in input order and return one TenantProgress per tenant in that order. A tenant with no outstanding records gets count zero and Blocked false. A false acknowledgement or RetryableSinkException thrown by the sink stops that tenant and marks it Blocked, preserving its acknowledged count and saved progress. Continue with the next tenant. A RetryableSinkException from the checkpoint store is not a sink error. SyncAsync continues to propagate all sink exceptions, including RetryableSinkException.
+
+Propagate cancellation and all other errors from either dependency. Do not start later tenants after an exception that must propagate. Any checkpoints already saved remain saved. A retry can pass the same batches again, and each tenant resumes independently.
