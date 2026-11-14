@@ -1,4 +1,5 @@
 .replay/
+.api-runs/
 .DS_Store
 .vs/
 **/bin/
